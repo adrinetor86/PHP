@@ -38,7 +38,7 @@ class Nota {
 
 		/* Check if exists */
 		$exists = false;
-		if(isset($param["id"]) and $param["id"] !=''){
+		if(isset($propiedades['params'][0]) and $propiedades['params'][0] !=''){
 			$actualNote = $this->getNoteById($param["id"]);
 			if(isset($actualNote["id"])){
 			$exists = true;

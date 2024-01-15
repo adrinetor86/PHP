@@ -18,41 +18,44 @@
 
     if(!isset($_SESSION['login']) || $_SESSION['login']==false){
 
-        $_GET["controller"]="ControladorLogin";
-        $_GET["action"]="ComprobarUser";
+        $propiedades['controller']="ControladorLogin";
+        $propiedades['action']="ComprobarUser";
+
+//        $propiedades['controller']="ControladorLogin";
+//        $propiedades['action']="ComprobarUser";
 
     }else{
        // echo "usuario: ".$_REQUEST['usuario']."<br>";
     }
 
     /* Si no está definido el controlador, cargo el controlador por defecto. */
-    if(!isset($_GET["controller"])) {
-        $_GET["controller"] = constant("DEFAULT_CONTROLLER");
+    if($propiedades['controller']==null) {
+        $propiedades['controller'] = constant("DEFAULT_CONTROLLER");
     }
 
     /* Si no está definida la acción, cargo la acción por defecto. */
-    if(!isset($_GET["action"])) {
-        $_GET["action"] = constant("DEFAULT_ACTION");
+    if($propiedades['action']==null) {
+        $propiedades['action'] = constant("DEFAULT_ACTION");
     }
 
-    $controller_path = 'controller/'.$_GET["controller"] . '.php';
+    $controller_path = 'controller/'.$propiedades['controller'] . '.php';
     echo "RUTA: ".$controller_path."<br>";
     /* Si no existe el fichero del controlador, indico que cargue el controlador por defecto. */
     if(!file_exists($controller_path)) {
-       // $controller_path = 'controller/'.constant("DEFAULT_CONTROLLER").'.php';
-        //$_GET["controller"] = constant("DEFAULT_CONTROLLER");
+      // $controller_path = 'controller/'.constant("DEFAULT_CONTROLLER").'.php';
+        //$propiedades['controller'] = constant("DEFAULT_CONTROLLER");
     }
 
     /* Load controller */
     require_once $controller_path;
-    $controllerName = $_GET["controller"];
+    $controllerName = $propiedades['controller'];
     $controller = new $controllerName();
 
     /* Check if method is defined */
     $dataToView["data"] = [];
 
-    if (method_exists($controller,$_GET["action"])) {
-        $dataToView["data"] = $controller->{$_GET["action"]}();
+    if (method_exists($controller,$propiedades['action'])) {
+        $dataToView["data"] = $controller->{$propiedades['action']}();
     } else {
         $dataToView["data"] = $controller->{constant("DEFAULT_ACTION")}();
     }

@@ -10,10 +10,12 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
 	<?php
 
 
+   // echo "PRUEBAAAAAA".$propiedades['params'][0];
 
 	    if(isset($_GET["response"]) and $_GET["response"] === true) {
 
-            if ( isset($_REQUEST['id'] ) && $_REQUEST['id'] != '') {
+          // arrProperties['action']
+            if (isset($propiedades['params'][0] ) && $propiedades['params'][0] != '') {
 
                 echo "Edicion realizada correctamente";
 
@@ -45,11 +47,12 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
 			<textarea style="white-space: pre-wrap;" name="contenido"><?php echo $contenido; ?></textarea>
 		</div>
             <input type="submit"
-                   formaction="index.php?controller=ControladorNota&action=save<?php echo (isset($_GET['id'])
-                       ? '&edition=true" value="Editar"' : '" value="Crear"')?>"
+                   formaction="index.php/<?php echo $propiedades['controller'].'/save/'. (isset($propiedades['params'][0])
+                       ? $propiedades['params'][0] .'" value="Editar"' : '" value="Crear"')?>"
                    >
+<!--        controller=ControladorNota&action=save-->
 <!--		<input type="submit" value="Guardar" />-->
-		<a href="index.php?controller=ControladorNota&action=list">Cancelar</a>
+		<a href="index.php/ControladorNota/list">Cancelar</a>
 	</form>
 </div>
 <?php

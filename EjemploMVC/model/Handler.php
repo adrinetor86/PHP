@@ -77,6 +77,8 @@
 
                     case "delete": $_GET['action']="delete";break;
 
+                    case "save": $_GET['action']="save";break;
+
                 }
 
             }
