@@ -1,0 +1,33 @@
+create table heroe(
+id integer(2) PRIMARY KEY,
+nombre varchar(15), 
+rol varchar(20),
+dificultad varchar(15),
+descripcion varchar(20)
+);
+
+
+INSERT into heroe values(12,"Spiderman","Ataque",4,"Usa telarañas");
+INSERT into heroe values(13,"Digref","Curacion",9,"Cura a todos");
+INSERT into heroe values(14,"Willyrex","Defensa",5,"Se esconde en arbustos");
+INSERT into heroe values(15,"Djmario","Escudero",8,"Protege a todos");
+INSERT into heroe values(16,"wismichu","Granadero",7,"Lanza granadas");
+
+
+create table usuario(
+id integer(2) PRIMARY key,
+nombre varchar(20),
+usuario varchar(20),
+password varchar(20),
+email varchar(40)
+);
+
+insert into usuario  values('20','Carlos','MostoPapi','1234','mosto@gmail.com');
+
+insert into usuario  values('22','Diego','DiegoSniper','0000','mosto@gmail.com');
+
+insert into usuario  values('24','Marcos','ElSapito','2222','mosto@gmail.com');
+
+insert into usuario  values('26','Marta','ColeraMan','1234','mosto@gmail.com');
+
+insert into usuario  values('28','Sandra','MonteroXD','1234','mosto@gmail.com');

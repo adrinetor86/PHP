@@ -1,0 +1,23 @@
+create table ticket(
+fecha varchar(15),
+hora varchar(15),
+importe int,
+  PRIMARY KEY(fecha,hora)
+);
+
+
+create table factura(
+fecha varchar(15),
+hora varchar(15),
+importe int,
+dni varchar(9),
+matricula varchar(6),
+  PRIMARY KEY(fecha,hora)
+);
+
+create table deposito(
+id  int AUTO_INCREMENT primary key,
+gasolina varchar(20),
+litros int,
+importe int
+);

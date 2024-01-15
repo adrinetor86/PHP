@@ -1,0 +1,15 @@
+table{
+    width: 80%;
+
+    border: 1px solid black;
+}
+th{
+    background-color: #4dc7ff;
+}
+td{
+    background-color: #fcfc8c;
+}
+
+body{
+    background-color: #ffffff;
+}

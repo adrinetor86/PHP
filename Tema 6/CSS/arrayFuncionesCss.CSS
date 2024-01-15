@@ -1,0 +1,22 @@
+
+input{
+    background-color: bisque;
+}
+body{
+    background-color: rgb(3, 251, 255);
+    margin-right: 550px;
+   
+}
+#bloque1{
+    color:rgb(221, 0, 255);
+}
+#Parrafo{
+    color:rgb(17, 0, 255);
+}
+#enviar{
+    margin-top: 0.4cm;
+    padding: 10px;
+    background-color: rgb(0, 255, 255);
+    border-radius: 50px;
+
+}

@@ -1,0 +1,39 @@
+body{
+    background-color:rgb(222, 250, 250);
+}
+
+form{
+background-color:rgb(155, 228, 206);
+padding: 20px;
+border-radius: 10px;
+box-shadow: 5px 5px 1px rgb(132, 205, 183);
+border: 2px solid black;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  
+ }
+
+label{
+   display: block;
+} 
+input[name="numeroDNI"]{
+   padding: 4px;
+   margin: 15px;
+   margin-left: 50px;
+   margin-right: 50px;
+}
+input[type="submit"]{
+    background-color: rgb(79, 230, 129);
+    border-radius: 15%;
+    border:none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+} 

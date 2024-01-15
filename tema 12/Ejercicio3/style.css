@@ -1,0 +1,35 @@
+
+body{
+    height:400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contenedor{
+    background-color: rgb(156, 194, 233);
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+    width:200px;
+    gap:10px;
+    height: 100px;
+    padding: 15px;
+    border-radius: 20px;
+}
+select{
+    padding: 10px;
+    align-self: center;
+}
+
+button{
+    margin-top: 20px;
+    margin-left: 35px;
+   align-self: center;
+border-radius: 20px;
+padding: 10px;
+    background-color: rgb(255, 162, 0)
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<form action="Actividad5_1.php" >
+    <body>
+    
+        Nombre: <input type="text" name="nombre"></br>
+        Apellido: <input type="text" name="apellido"></br>
+        Email: <input type="email" name="email"></br>
+        Url: <input type="url" name="url"></br>
+        Sexo: &nbsp; Mujer<input type="radio" name="sexo" value="Hembra"> &nbsp; Hombre<input type="radio" name="sexo" value="Macho"></br>
+        Numero Convivientes: <input type="text" name="convivientes"></br><br/>
+        Aficiones:<br/>
+
+        Nadar <input type="checkbox" name="aficiones[]" value="nadar"></br>
+        Furbo <input type="checkbox" name="aficiones[]" value="furbo"></br>
+        Caza <input type="checkbox" name="aficiones[]" value="caza"></br>
+        Gobernar <input type="checkbox" name="aficiones[]" value="gobernar"></br>
+        
+        Menu </br>
+        <select name="Menu[]" multiple="true" >
+            <option value="Gambas">Gambas</option>
+            <option value="Paella">Paella</option>
+            <option value="Lomo">Lomo</option>
+            <option value="Cachopo">Cachopo</option>
+        </select>
+        
+        <input type="submit">
+    </body>
+</form>
+</html>
