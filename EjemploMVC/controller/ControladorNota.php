@@ -19,15 +19,15 @@
         }
 
         // devuelve una nota concreta
-        public function edit($id = null){
-
+        public function edit($params){
 
             $this->view = 'editarNota';
             /* Id can from get param or method param */
-            if(isset($_POST["id"])) {
+            if(!empty($params['id'])) {
                 $this->page_title = 'Editar nota';
-                $id = $_POST["id"];
+                $id = $params['id'];
             } else {
+                $id=null;
                 $this->page_title = 'Crear nota';
 
             }
@@ -36,29 +36,14 @@
         }
 
         /* Create or update note */
-        public function save(){
+        public function save($params){
+
             $this->view = 'editarNota';
-
-            if (isset($_POST["id"]) && $_POST["id"]!='') {
-                $this->page_title = 'Editar nota';
-                $_POST['edit'] = true;
-            } else {
-                $this->page_title = 'Crear nota';
-                //echo $_REQUEST['titulo'];
-                $_POST['edit'] = false;
-            }
-            echo "EL POST: ";
-            print_r($_POST);
-            echo "<br>EL DATA: ";
-            //print_r($_POST["id"]);
-          //  print_r($_POST["titulo"]);
+            $this->page_title = 'Editar nota';
+            $_POST['edit'] = true;
 
 
-
-            //hay un arr por ahi suelto q imprime
             $id = $this->noteObj->save($_POST);
-
-
             //echo $id;
             $result = $this->noteObj->getNoteById($id);
 
@@ -73,10 +58,10 @@
         }
 
         /* Confirm to delete */
-        public function confirmDelete(){
+        public function confirmDelete($params){
             $this->page_title = 'Eliminar nota';
             $this->view = 'confirmaBorrarNota';
-            return $this->noteObj->getNoteById($_POST["id"]);
+            return $this->noteObj->getNoteById($params["id"]);
         }
 
         /* Delete */

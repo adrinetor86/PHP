@@ -1,10 +1,10 @@
 
 <!--<form action="index.php?controller=ControladorLogin&action=ComprobarUser" method="post">-->
 
-    <form action="index.php/ControladorLogin/ComprobarUser" method="post">
+    <form action="index.php/controller=ControladorLogin&action=ComprobarUser" method="post">
 
     <?php
-    //$_GET['controller']
+
      //echo  '<form action="index.php/".$_GET[\'controller\']."&action=ComprobarUser" method="post">';
 
         //session_start();

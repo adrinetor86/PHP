@@ -1,7 +1,7 @@
 <?php
 
 
-  class Handler{
+class Handler{
 
 
     private array $arrProperties;
@@ -12,7 +12,7 @@
 
         $this->arrProperties=[];
         $this->valoresUrl();
-     //   for(;$arrUrl[$intCont]!='index.php' && $intCont<count($arrUrl)-1;$intCont++);
+        //   for(;$arrUrl[$intCont]!='index.php' && $intCont<count($arrUrl)-1;$intCont++);
 //
 //        for($intCont2=1; $intCont<count($arrUrl); $intCont++, $intCont2++)
 //            echo "<br>Elemento $intCont2: $arrUrl[$intCont] <br />";
@@ -32,12 +32,12 @@
 
         //  echo "<br><br>".$strUri."<br><br>";
         //print_r($strUri);
-      //  echo "<br>";
+        //  echo "<br>";
         //Dividimos la uri en 2, y nos quedamos la 2 parte
         $arrUri=explode("index.php",$strUri)[1];
 
-       // print_r($arrUri);
-       // echo "<br>";
+        // print_r($arrUri);
+        // echo "<br>";
         $arrParams = explode('/', $arrUri);
 
 
@@ -45,45 +45,54 @@
         $this->arrProperties['action'] = $arrParams[2] ?? '';
 
         //Pasa un trozo del array
-        $this->arrProperties['parametros']= array_slice($arrParams, 3);
+        $auxParametros=array_slice($arrParams, 3);
+        $this->arrProperties['parametros']=[];
 
-       //print_r($arrParams);
-       // echo "<br>Ruta: ".$strRuta;
+
+        if ($auxParametros !== []) {
+            switch ($this->arrProperties['controller']) {
+                case 'ControladorNota':
+                    switch ($this->arrProperties['action']) {
+                        case 'list':
+                            $this->arrProperties['parametros']['page'] = $auxParametros[0] ?? '';
+                            break;
+                        case 'save':
+                        case 'edit':
+                        case 'confirmDelete':
+                            $this->arrProperties['parametros']['id'] = $auxParametros[0] ?? '';
+                            break;
+                    }
+                    break;
+//                case 'ControladorLogin':
+//                    switch ($this->arrProperties['action']) {
+//                        case 'checkPassword':
+//                        case 'logout':
+//                            $this->arrProperties['parameters'] = [];
+//                    }
+//                    break;
+            }
+        }
+
+        //print_r($arrParams);
+        // echo "<br>Ruta: ".$strRuta;
         $intCont=0;
+//             $_GET['id']=$this->arrProperties['parametros'][0];
+//            echo "EL ID DE LOS HUEVOS ".$this->arrProperties['parametros']['id'];
     }
 
     public function getController(){
         return $this->arrProperties['controller'];
     }
-      public function getAction(){
-          return $this->arrProperties['action'];
-      }
-      public function getParams(){
-          return $this->arrProperties['parametros'];
-      }
+    public function getAction(){
+        return $this->arrProperties['action'];
+    }
+    public function getParams(){
+        return $this->arrProperties['parametros'];
+    }
 
-      public function getProperties(): array {
+    public function getProperties(): array {
 
+        return $this->arrProperties;
+    }
 
-            if($this->arrProperties['controller']=="ControladorNota"){
-
-                    $_GET['controller']='ControladorNota';
-
-                switch ($this->arrProperties['action']){
-
-                    case "list": $_GET['action']="list";break;
-
-                    case "edit": $_GET['action']="edit";break;
-
-                    case "delete": $_GET['action']="delete";break;
-
-                    case "save": $_GET['action']="save";break;
-
-                }
-
-            }
-
-          return $this->arrProperties;
-      }
-
-  }
+}

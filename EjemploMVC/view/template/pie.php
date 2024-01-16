@@ -2,7 +2,7 @@
 <?php
 if(isset($_SESSION['login']) && $_SESSION['login']==true){
 
-    echo '<a href="index.php?controller=ControladorLogin&action=cerrarSesion">Cerrar sesion</a>';
+    echo '<a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorLogin/cerrarSesion">Cerrar sesion</a>';
 }
 
 ?>

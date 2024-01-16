@@ -12,58 +12,54 @@
 
   $propiedades= $capturador->getProperties();
 
-    echo "CONTROLADOR: ".$propiedades['controller']."<br>";
-    echo "accion: ".$propiedades['action']."<br>";
-    echo "parámetros: ";
-    print_r($propiedades['parametros']);echo"<br/>";
+    echo $propiedades['controller']."<br>";
+    echo $propiedades['action']."<br>";
+    //echo print_r($propiedades['parametros']);
+
+    $controladorHandler=$propiedades['controller'];
+    $accionHandler=$propiedades['action'];
+    $parametrosHandler=$propiedades['parametros'];
+
 
     if(!isset($_SESSION['login']) || $_SESSION['login']==false){
 
-        $propiedades['controller']="ControladorLogin";
-        $propiedades['action']="ComprobarUser";
-
-//        $propiedades['controller']="ControladorLogin";
-//        $propiedades['action']="ComprobarUser";
+        $controladorHandler="ControladorLogin";
+        $accionHandler="ComprobarUser";
 
     }else{
        // echo "usuario: ".$_REQUEST['usuario']."<br>";
     }
 
     /* Si no está definido el controlador, cargo el controlador por defecto. */
-    if($propiedades['controller']==null) {
-        $propiedades['controller'] = constant("DEFAULT_CONTROLLER");
+    if(empty($controladorHandler)) {
+        $controladorHandler = constant("DEFAULT_CONTROLLER");
     }
 
     /* Si no está definida la acción, cargo la acción por defecto. */
-    if($propiedades['action']==null) {
-        $propiedades['action'] = constant("DEFAULT_ACTION");
+    if(empty($accionHandler)) {
+        $accionHandler = constant("DEFAULT_ACTION");
     }
 
-    $controller_path = 'controller/'.$propiedades['controller'] . '.php';
+    $controller_path = 'controller/'.$controladorHandler . '.php';
     echo "RUTA: ".$controller_path."<br>";
     /* Si no existe el fichero del controlador, indico que cargue el controlador por defecto. */
     if(!file_exists($controller_path)) {
-      // $controller_path = 'controller/'.constant("DEFAULT_CONTROLLER").'.php';
-        //$propiedades['controller'] = constant("DEFAULT_CONTROLLER");
+        $controller_path = 'controller/ControladorNota.php';
+        $controladorHandler = "ControladorNota";
     }
 
     /* Load controller */
     require_once $controller_path;
-    $controllerName = $propiedades['controller'];
+    $controllerName = $controladorHandler;
     $controller = new $controllerName();
-echo "CONTROLADOR: ".$propiedades['controller']."<br>";
-echo "accion: ".$propiedades['action']."<br>";
+
     /* Check if method is defined */
     $dataToView["data"] = [];
 
-    if (method_exists($controller,$propiedades['action'])) {
-
-
-       echo"ACTION<BR>"; print_r($propiedades['action']); echo"<BR>";
-        $dataToView["data"] = $controller->{$propiedades['action']}();
-        print_r($dataToView["data"]);
+    if (method_exists($controller,$accionHandler)) {
+        $dataToView["data"] = $controller->{$accionHandler}($parametrosHandler);
     } else {
-        $dataToView["data"] = $controller->{constant("DEFAULT_ACTION")}();
+        $dataToView["data"] = $controller->list($parametrosHandler);
     }
 
     /* Load views */
