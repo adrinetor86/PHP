@@ -16,7 +16,6 @@ class Nota {
 		$sql = "SELECT * FROM ".$this->table;
 		$stmt = $this->conection->prepare($sql);
 		$stmt->execute();
-
 		return $stmt->fetchAll();
 	}
 
@@ -38,8 +37,10 @@ class Nota {
 
 		/* Check if exists */
 		$exists = false;
-		if(isset($propiedades['params'][0]) and $propiedades['params'][0] !=''){
+		if(isset($propiedades['parametros'][0]) && $propiedades['parametros'][0] !=''){
 			$actualNote = $this->getNoteById($param["id"]);
+
+            echo "ACTUALNOTE: ".$actualNote;
 			if(isset($actualNote["id"])){
 			$exists = true;
 				/* Actual values */
@@ -55,7 +56,7 @@ class Nota {
            isset($param["contenido"]) ){
 
             $titulo = $param["titulo"];
-            //echo '$$$$$'.$titulo;
+        //    echo '$$$$$'.$titulo;
             $contenido = $param["contenido"];
         }
 

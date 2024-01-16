@@ -12,9 +12,10 @@
 
   $propiedades= $capturador->getProperties();
 
-    echo $propiedades['controller']."<br>";
-    echo $propiedades['action']."<br>";
-    echo print_r($propiedades['params']);
+    echo "CONTROLADOR: ".$propiedades['controller']."<br>";
+    echo "accion: ".$propiedades['action']."<br>";
+    echo "parámetros: ";
+    print_r($propiedades['parametros']);echo"<br/>";
 
     if(!isset($_SESSION['login']) || $_SESSION['login']==false){
 
@@ -50,12 +51,17 @@
     require_once $controller_path;
     $controllerName = $propiedades['controller'];
     $controller = new $controllerName();
-
+echo "CONTROLADOR: ".$propiedades['controller']."<br>";
+echo "accion: ".$propiedades['action']."<br>";
     /* Check if method is defined */
     $dataToView["data"] = [];
 
     if (method_exists($controller,$propiedades['action'])) {
+
+
+       echo"ACTION<BR>"; print_r($propiedades['action']); echo"<BR>";
         $dataToView["data"] = $controller->{$propiedades['action']}();
+        print_r($dataToView["data"]);
     } else {
         $dataToView["data"] = $controller->{constant("DEFAULT_ACTION")}();
     }

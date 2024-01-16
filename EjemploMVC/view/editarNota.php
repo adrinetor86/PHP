@@ -1,7 +1,15 @@
 <?php
 $id = $titulo = $contenido = "";
 
-if(isset($dataToView["data"]["id"])) $id = $dataToView["data"]["id"];
+//if(isset($dataToView["data"]["id"])) $id = $dataToView["data"]["id"];
+
+//print_r($dataToView["data"]);
+
+print_r($_POST);
+echo "<br> PRUEBA DATA: ";
+print_r($dataToView["data"]["id"]);
+
+if(isset($dataToView["data"]["id"])){ $id = $dataToView["data"]["id"]; echo "bien";}
 if(isset($dataToView["data"]["titulo"])) $titulo = $dataToView["data"]["titulo"];
 if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["contenido"];
 
@@ -10,12 +18,12 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
 	<?php
 
 
-   // echo "PRUEBAAAAAA".$propiedades['params'][0];
-
+   // echo "   PRUEBAAAAAA".$propiedades['params'][0];
+      //  print_r($dataToView["data"][0]['id']);
 	    if(isset($_GET["response"]) and $_GET["response"] === true) {
 
           // arrProperties['action']
-            if (isset($propiedades['params'][0] ) && $propiedades['params'][0] != '') {
+            if (isset($propiedades['parametros'][0] ) && $propiedades['parametros'][0] != '') {
 
                 echo "Edicion realizada correctamente";
 
@@ -36,7 +44,8 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
 	?>
 
 	<form method="POST">
-		<input type="hidden" name="id" value="<?php echo $id; ?>" />
+
+            <input type="hidden" name="id" value="<?php echo $id; ?>" />
 		<div>
 			<label>Título</label>
 			<input type="text" name="titulo" value="<?php echo $titulo; ?>" />
@@ -47,13 +56,14 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
 			<textarea style="white-space: pre-wrap;" name="contenido"><?php echo $contenido; ?></textarea>
 		</div>
             <input type="submit"
-                   formaction="index.php/<?php echo $propiedades['controller'].'/save/'. (isset($propiedades['params'][0])
-                       ? $propiedades['params'][0] .'" value="Editar"' : '" value="Crear"')?>"
+                   formaction="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota<?php echo '/save/'. (isset($propiedades['parametros'][0])
+                       ? $propiedades['parametros'][0] .'" value="Editar"' : '" value="Crear"')?>"
                    >
 <!--        controller=ControladorNota&action=save-->
 <!--		<input type="submit" value="Guardar" />-->
-		<a href="index.php/ControladorNota/list">Cancelar</a>
+		<a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list">Cancelar</a>
 	</form>
 </div>
+
 <?php
 //}

@@ -45,7 +45,7 @@
         $this->arrProperties['action'] = $arrParams[2] ?? '';
 
         //Pasa un trozo del array
-        $this->arrProperties['params']= array_slice($arrParams, 3);
+        $this->arrProperties['parametros']= array_slice($arrParams, 3);
 
        //print_r($arrParams);
        // echo "<br>Ruta: ".$strRuta;
@@ -59,7 +59,7 @@
           return $this->arrProperties['action'];
       }
       public function getParams(){
-          return $this->arrProperties['params'];
+          return $this->arrProperties['parametros'];
       }
 
       public function getProperties(): array {
