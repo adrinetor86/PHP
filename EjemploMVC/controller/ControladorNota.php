@@ -13,6 +13,7 @@
             $this->noteObj = new Nota();
         }
 
+        //hola
         // devuelve todas las notas
         public function list() : array{
             return $this->noteObj->getNotes();
