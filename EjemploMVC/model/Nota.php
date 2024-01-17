@@ -13,7 +13,7 @@ class Nota {
 
 
     public function siguientePagina(int $intPagina=0): bool{
-        $sql = "SELECT count(*) cantidad FROM " . $this->table;
+        $sql = "SELECT count(*) as cantidad FROM " . $this->table;
         $stmt = $this->conection->prepare($sql);
         $stmt->execute();
         // si tengo mas resistros que la pagina en la que estoy OK

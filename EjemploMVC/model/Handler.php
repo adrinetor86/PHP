@@ -26,13 +26,10 @@ class Handler{
 
         $arrParseUrl=parse_url($strUri);
 
+        if(is_array($arrParseUrl) && str_contains($strUri,".php")){
+
         $strRuta=$arrParseUrl['path'];
 
-        //    echo $strDominio;
-
-        //  echo "<br><br>".$strUri."<br><br>";
-        //print_r($strUri);
-        //  echo "<br>";
         //Dividimos la uri en 2, y nos quedamos la 2 parte
         $arrUri=explode("index.php",$strUri)[1];
 
@@ -71,9 +68,9 @@ class Handler{
 //                            $this->arrProperties['parameters'] = [];
 //                    }
 //                    break;
+                }
             }
         }
-
         //print_r($arrParams);
         // echo "<br>Ruta: ".$strRuta;
         $intCont=0;
