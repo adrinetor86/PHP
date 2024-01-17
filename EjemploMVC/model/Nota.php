@@ -11,9 +11,24 @@ class Nota {
     }
 
 
+
+    public function siguientePagina(int $intPagina=0): bool{
+        $sql = "SELECT count(*) cantidad FROM " . $this->table;
+        $stmt = $this->conection->prepare($sql);
+        $stmt->execute();
+        // si tengo mas resistros que la pagina en la que estoy OK
+
+        if ( $stmt->fetch()["cantidad"] > $intPagina * 3)
+            return true;
+        else
+            return false;
+    }
+
+
 	/* Get all notes */
-	public function getNotes(){
-		$sql = "SELECT * FROM ".$this->table;
+	public function getNotes($param):array{
+        $numNotas=3;
+		$sql = "SELECT * FROM ".$this->table . " limit $param,3";
 		$stmt = $this->conection->prepare($sql);
 		$stmt->execute();
 
@@ -45,7 +60,7 @@ class Nota {
 				/* Actual values */
 				$id = $param["id"];
 				$titulo = $actualNote["titulo"];
-                //echo "Ya sabe ".$titulo;
+
 				$contenido = $actualNote["contenido"];
 			}
 		}
@@ -55,7 +70,7 @@ class Nota {
            isset($param["contenido"]) ){
 
             $titulo = $param["titulo"];
-            //echo '$$$$$'.$titulo;
+
             $contenido = $param["contenido"];
         }
 
@@ -65,11 +80,10 @@ class Nota {
 			$stmt = $this->conection->prepare($sql);
 			$res = $stmt->execute([$titulo, $contenido, $id]);
 		}else{
-           // echo "Prueba".$titulo.' contenido '.$contenido;
 
             if($titulo!='' && $contenido!=''){
                 $sql = "INSERT INTO ".$this->table. " (titulo, contenido) values('$titulo', '$contenido')";
-               // echo "????? $sql<br>";
+
                 $stmt = $this->conection->prepare($sql);
                 $stmt->execute();
                 $id = $this->conection->lastInsertId();

@@ -14,8 +14,24 @@
         }
 
         // devuelve todas las notas
-        public function list() : array{
-            return $this->noteObj->getNotes();
+        public function list($params) : array{
+
+            if(!empty($params['page'])) {
+
+                $intPagina=$params['page'];
+                $_GET['pagina']=$intPagina;
+                $_SESSION['numPagina']=$intPagina;
+                $_GET['siguiente'] = $this->noteObj->siguientePagina($intPagina);
+
+
+                return $this->noteObj->getNotes(($intPagina-1)*3);
+
+
+            }else{
+                $params['page']=1;
+            }
+
+            return $this->noteObj->getNotes($params['page']);
         }
 
         // devuelve una nota concreta
@@ -36,7 +52,7 @@
         }
 
         /* Create or update note */
-        public function save($params){
+        public function save(){
 
             $this->view = 'editarNota';
             $this->page_title = 'Editar nota';
@@ -44,16 +60,12 @@
 
 
             $id = $this->noteObj->save($_POST);
-            //echo $id;
+
             $result = $this->noteObj->getNoteById($id);
 
-//            if($result['contenido']!='' && $result['contenido']!=''){
-//
-//
-//            }
-          //  echo $result['contenido'];
+
             $_GET["response"] = true;
-            //echo "hola";
+
             return $result;
         }
 
@@ -68,6 +80,7 @@
         public function delete(){
             $this->page_title = 'Listado de notas';
             $this->view = 'listadoNotas';
+            header('Location: http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list/'.$_SESSION['numPagina']);
             return $this->noteObj->deleteNoteById($_POST["id"]);
         }
 

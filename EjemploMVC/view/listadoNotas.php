@@ -1,10 +1,7 @@
 <div>
 	<div>
 
-<!--        index.php?controller=ControladorNota&Action=list-->
-
 		<a href="http://localhost/2DAW/PHP/EjemploMVC/index.php<?php echo "/ControladorNota/edit"?>">Crear nota</a>
-<!--        --><?php //echo "/".$_GET['controller'].'/'.$_GET['action'];?>
 
 		<hr/>
 	</div>
@@ -25,6 +22,13 @@
                 </div>
                 <?php
             }
+
+            if(isset($_GET['pagina']) && $_GET['pagina']>1)
+                echo "<a href=\"http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list/" . ($_GET['pagina']-1) ."\">anterior </a>";
+            if(isset($_GET['siguiente']) && $_GET['siguiente'] == true)
+                echo "<a href=\"http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list/" . ($_GET['pagina']+1) ."\">siguiente </a>";
+
+
         }else{
 	?>
             <div>

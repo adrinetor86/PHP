@@ -54,6 +54,7 @@ class Handler{
                 case 'ControladorNota':
                     switch ($this->arrProperties['action']) {
                         case 'list':
+                            //PONGO 1
                             $this->arrProperties['parametros']['page'] = $auxParametros[0] ?? '';
                             break;
                         case 'save':

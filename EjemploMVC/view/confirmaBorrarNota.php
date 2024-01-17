@@ -5,7 +5,8 @@
 			<b>¿Confirma que desea eliminar esta nota?:</b>
 			<i><?php echo $dataToView["data"]["titulo"]; ?></i>
 		</div>
-		<input type="submit" value="Eliminar" class="btn btn-danger"/>
-		<a class="btn btn-outline-success" href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list">Cancelar</a>
+		<input type="submit" value="Eliminar" class="btn btn-danger" />
+
+		<a class="btn btn-outline-success" href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list/<?php echo $_SESSION['numPagina']?>">Cancelar</a>
 	</form>
 </div>

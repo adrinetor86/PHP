@@ -9,6 +9,14 @@
 		<header>
 			<div style="margin-top: 58px;">
 				<h1><?php echo $controller->page_title; ?></h1>
-				<h4>-</h4>
+
+
+                <?php if(!empty($parametrosHandler['page'])){
+
+                    echo" <h4>Pagina:".$parametrosHandler['page']."</h4>";
+
+                }
+                ?>
+
 			</div>
 		</header>

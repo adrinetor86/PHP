@@ -12,9 +12,9 @@
 
   $propiedades= $capturador->getProperties();
 
-    echo $propiedades['controller']."<br>";
-    echo $propiedades['action']."<br>";
-    //echo print_r($propiedades['parametros']);
+//    echo $propiedades['controller']."<br>";
+//    echo $propiedades['action']."<br>";
+//    echo print_r($propiedades['parametros']);
 
     $controladorHandler=$propiedades['controller'];
     $accionHandler=$propiedades['action'];
@@ -41,7 +41,7 @@
     }
 
     $controller_path = 'controller/'.$controladorHandler . '.php';
-    echo "RUTA: ".$controller_path."<br>";
+//    echo "RUTA: ".$controller_path."<br>";
     /* Si no existe el fichero del controlador, indico que cargue el controlador por defecto. */
     if(!file_exists($controller_path)) {
         $controller_path = 'controller/ControladorNota.php';

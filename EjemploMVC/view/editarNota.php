@@ -24,21 +24,13 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
             }
         }
 	?>
-<!--            <div>-->
-<!--                --><?php //echo ($_GET['response'] === true) ? 'Edición' : 'Creación'; ?><!-- realizada correctamente.-->
-<!--                <a href="index.php?controller=ControladorNota&action=list">Volver al listado</a>-->
-<!--            </div>-->
-	<?php
-
-	   // }
-	?>
 
 	<form method="POST">
 		<input type="hidden" name="id" value="<?php echo $id; ?>" />
 		<div>
 			<label>Título</label>
 			<input type="text" name="titulo" value="<?php echo $titulo; ?>" />
-                <!-- <?php //echo"A BUENO:".$titulo?>-->
+
 		</div>
 		<div>
 			<label>Contenido</label>
@@ -51,9 +43,8 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
                value="<?php echo (!empty($id)) ? 'Editar' : 'Crear'; ?>">
 
 
-<!--		<input type="submit" value="Guardar" />-->
-		<a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list">Cancelar</a>
+
+		<a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list/<?php echo $_SESSION['numPagina']?>">Cancelar</a>
 	</form>
 </div>
 <?php
-//}
