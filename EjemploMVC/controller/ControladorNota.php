@@ -1,4 +1,4 @@
-<?php 
+<?php
 
     require_once 'model/Nota.php';
 
@@ -18,13 +18,14 @@
 
             if(!empty($params['page'])) {
 
+
                 $intPagina=$params['page'];
                 $_GET['pagina']=$intPagina;
                 $_SESSION['numPagina']=$intPagina;
                 $_GET['siguiente'] = $this->noteObj->siguientePagina($intPagina);
 
 
-                return $this->noteObj->getNotes(($intPagina-1)*3);
+                return $this->noteObj->getNotes(($intPagina-1)*DEFAULT_NOTES);
 
 
             }else{

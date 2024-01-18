@@ -1,5 +1,6 @@
 <?php 
 
+
 class Nota {
 
 	private $table = 'notas';
@@ -14,21 +15,29 @@ class Nota {
 
     public function siguientePagina(int $intPagina=0): bool{
         $sql = "SELECT count(*) as cantidad FROM " . $this->table;
+
         $stmt = $this->conection->prepare($sql);
         $stmt->execute();
+
+        $cantidad=$stmt->fetch()["cantidad"];
+
+
+        $_SESSION['maxPage']=ceil($cantidad/DEFAULT_NOTES);
+      //  echo "MAX PAGE: ".$maxPage;
         // si tengo mas resistros que la pagina en la que estoy OK
 
-        if ( $stmt->fetch()["cantidad"] > $intPagina * 3)
+        if ( $cantidad > $intPagina * DEFAULT_NOTES)
             return true;
-        else
+         else
             return false;
     }
 
 
 	/* Get all notes */
 	public function getNotes($param):array{
-        $numNotas=3;
-		$sql = "SELECT * FROM ".$this->table . " limit $param,3";
+        $numNotas=DEFAULT_NOTES;
+
+		$sql = "SELECT * FROM ".$this->table . " limit $param,$numNotas";
 		$stmt = $this->conection->prepare($sql);
 		$stmt->execute();
 
