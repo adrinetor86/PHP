@@ -35,6 +35,8 @@
         $controladorHandler = constant("DEFAULT_CONTROLLER");
     }
 
+    //PRUEBA
+
     /* Si no está definida la acción, cargo la acción por defecto. */
     if(empty($accionHandler)) {
         $accionHandler = constant("DEFAULT_ACTION");
