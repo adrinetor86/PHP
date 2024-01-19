@@ -4,7 +4,7 @@
     require_once 'model/Db.php';
     require_once 'controller/ControladorLogin.php';
     require_once 'model/Handler.php';
-
+    require_once 'model/View.php';
 
    session_start();
 
@@ -64,7 +64,9 @@
         $dataToView["data"] = $controller->list($parametrosHandler);
     }
 
+
+        View::render($controller,$dataToView['data']);
     /* Load views */
-    require_once 'view/template/cabecera.php';
-    require_once 'view/'.$controller->view.'.php';
-    require_once 'view/template/pie.php';
+//    require_once 'view/template/cabecera.php';
+//    require_once 'view/'.$controller->view.'.php';
+//    require_once 'view/template/pie.php';
