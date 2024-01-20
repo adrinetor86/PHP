@@ -12,10 +12,7 @@ class Handler{
 
         $this->arrProperties=[];
         $this->valoresUrl();
-        //   for(;$arrUrl[$intCont]!='index.php' && $intCont<count($arrUrl)-1;$intCont++);
-//
-//        for($intCont2=1; $intCont<count($arrUrl); $intCont++, $intCont2++)
-//            echo "<br>Elemento $intCont2: $arrUrl[$intCont] <br />";
+
 
     }
 
@@ -33,8 +30,6 @@ class Handler{
         //Dividimos la uri en 2, y nos quedamos la 2 parte
         $arrUri=explode("index.php",$strUri)[1];
 
-        // print_r($arrUri);
-        // echo "<br>";
         $arrParams = explode('/', $arrUri);
 
 
@@ -56,16 +51,16 @@ class Handler{
 
                    if(!empty($this->arrProperties['parametros']['page'])
                        && isset($_SESSION['maxPage'])
-                       && $this->arrProperties['parametros']['page'] > $_SESSION['maxPage'] ){
+                       && $this->arrProperties['parametros']['page'] > $_SESSION['maxPage']) {
 
-                       echo "Paginas maximas :" .$_SESSION['maxPage'];
-                       $this->arrProperties['parametros']['page'] = $_SESSION['maxPage'];
+                           echo "Paginas maximas :" .$_SESSION['maxPage'];
+                           $this->arrProperties['parametros']['page'] = $_SESSION['maxPage'];
 
                    }elseif ($this->arrProperties['parametros']['page'] < 1){
-                       $this->arrProperties['parametros']['page']=1;
-                   }
 
-                            break;
+                       $this->arrProperties['parametros']['page']=1;
+                   } break;
+
                         case 'save':
                         case 'edit':
                         case 'confirmDelete':
@@ -80,14 +75,11 @@ class Handler{
 //                            $this->arrProperties['parameters'] = [];
 //                    }
 //                    break;
+
                 }
             }
         }
-        //print_r($arrParams);
-        // echo "<br>Ruta: ".$strRuta;
-        $intCont=0;
-//             $_GET['id']=$this->arrProperties['parametros'][0];
-//            echo "EL ID DE LOS HUEVOS ".$this->arrProperties['parametros']['id'];
+
     }
 
     public function getController(){

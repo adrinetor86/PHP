@@ -10,5 +10,5 @@ foreach ($_SESSION as $usuario =>$contraseña){
     echo $usuario.' '. $contraseña;
 }
 
-header('Location: ./login.php?user='.$usuario.'&pass='.$contraseña);
+header('Location: ./usuario.php?user='.$usuario.'&pass='.$contraseña);
 

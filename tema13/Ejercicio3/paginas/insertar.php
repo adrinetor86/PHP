@@ -15,5 +15,5 @@ print_r($arrDatos);
 if(insert($arrDatos)){
     echo "Usuario Metido Correctamente";
     //PONER LOS VALORES DEL USER Y PASS
-   // header("location: ./login.php");
+   // header("location: ./usuario.php");
 }

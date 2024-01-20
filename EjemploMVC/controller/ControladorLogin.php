@@ -14,8 +14,6 @@ class ControladorLogin{
     }
 
 
-
-
     public function ComprobarUser(){
 
 

@@ -65,8 +65,8 @@
     }
 
 
-        View::render($controller,$dataToView['data']);
+        //View::render($controller,$dataToView['data']);
     /* Load views */
-//    require_once 'view/template/cabecera.php';
-//    require_once 'view/'.$controller->view.'.php';
-//    require_once 'view/template/pie.php';
+    require_once 'view/template/cabecera.php';
+    require_once 'view/'.$controller->view.'.php';
+    require_once 'view/template/pie.php';

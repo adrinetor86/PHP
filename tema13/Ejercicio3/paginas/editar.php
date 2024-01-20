@@ -15,7 +15,7 @@ if(isset($_REQUEST['id'])){
 }else{
     echo"hola";
    // include ("../includes/mainIndex.inc.php");
-    header ("./login.php");
+    header ("./usuario.php");
    //header("Location: ../includes/mainIndex.inc.php");
 }
 
