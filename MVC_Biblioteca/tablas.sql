@@ -12,13 +12,19 @@
 --  contrasena varchar(20) NOT NULL);
 
 -- CREATE TABLE libros (
---  idLibro integer(3)  primary key,
+--  idLibro int AUTO_INCREMENT  primary key,
 --  titulo	VARCHAR(40),
 --  genero	VARCHAR(15),
 --  pais	VARCHAR(10),
 --  ano 	integer(4),
 --  numPaginas   integer(4)) ;
 
+-- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Manolito Gafotas','infantil','España',1994,192);
+-- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Crónicas de la Dragonlance','fantasía épica','USA',1987,1472);
+-- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Matilda','falntasía','UK',1988, 248);
+-- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('El león, la bruja y el armario','fantasía','UK',1950,240);
+-- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('el hobbit','Fantasía heroica','UK',1937,288);
+-- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Harry Potter y la piedra filosofal','fantasía','UK',1997,264);
 
 
 --INSERT INTO usuario (email,contrasena) VALUES ('correo@gmail.com','contrasena');

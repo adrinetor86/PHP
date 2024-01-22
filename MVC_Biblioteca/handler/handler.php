@@ -42,44 +42,46 @@ private array $arrProperties;
 
 
     if ($auxParametros !== []) {
-    switch ($this->arrProperties['controller']) {
-    case 'ControladorNota':
-    switch ($this->arrProperties['action']) {
+        switch ($this->arrProperties['controller']) {
 
-    case 'list':
-    //PONGO 1
-    $this->arrProperties['parametros']['page'] = $auxParametros[0] ?? '';
+             case 'ControladorLibros':
+              switch ($this->arrProperties['action']) {
 
-    if(!empty($this->arrProperties['parametros']['page'])
-    && isset($_SESSION['maxPage'])
-    && $this->arrProperties['parametros']['page'] > $_SESSION['maxPage']) {
+                case 'listarLibros':
+                //PONGO 1
+                $this->arrProperties['parametros']['page'] = $auxParametros[0] ?? '';
 
-    //echo "Paginas maximas :" .$_SESSION['maxPage'];
-    $this->arrProperties['parametros']['page'] = $_SESSION['maxPage'];
+//                if(!empty($this->arrProperties['parametros']['page'])
+//                && isset($_SESSION['maxPage'])
+//                && $this->arrProperties['parametros']['page'] > $_SESSION['maxPage']) {
+//
+//                //echo "Paginas maximas :" .$_SESSION['maxPage'];
+//                $this->arrProperties['parametros']['page'] = $_SESSION['maxPage'];
+//
+//                }elseif ($this->arrProperties['parametros']['page'] < 1){
+//
+//                $this->arrProperties['parametros']['page']=1;
+//                }
+                    break;
+                case 'save';
+                case 'listarLibro':
+                case 'editarLibro':
+                case 'eliminarLibro':
+                $this->arrProperties['parametros']['id'] = $auxParametros[0] ?? '';
+                break;
+                }
+        break;
+        //                case 'ControladorLogin':
+        //                    switch ($this->arrProperties['action']) {
+        //                        case 'checkPassword':
+        //                        case 'logout':
+        //                            $this->arrProperties['parameters'] = [];
+        //                    }
+        //                    break;
 
-    }elseif ($this->arrProperties['parametros']['page'] < 1){
-
-    $this->arrProperties['parametros']['page']=1;
-    } break;
-
-    case 'save':
-    case 'edit':
-    case 'confirmDelete':
-    $this->arrProperties['parametros']['id'] = $auxParametros[0] ?? '';
-    break;
-    }
-    break;
-    //                case 'ControladorLogin':
-    //                    switch ($this->arrProperties['action']) {
-    //                        case 'checkPassword':
-    //                        case 'logout':
-    //                            $this->arrProperties['parameters'] = [];
-    //                    }
-    //                    break;
-
-    }
-    }
-    }
+        }
+        }
+        }
 
     }
 

@@ -36,7 +36,7 @@
 
                         $_SESSION['login'] = true;
 
-                  // header('Location: http://localhost/2DAW/PHP/EjemploMVC/index.php');
+                 header('Location: http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros/1');
                     } else {
                         $datosUsuario['error'] = 'login incorrecto';
                         //echo "<br>Debes introducir un usuario valido";

@@ -57,6 +57,7 @@ class Nota {
 	/* Save note */
 	public function save($param){
 
+        echo "el param "; print_r($param);
 		/* Set default values */
 		$titulo = $contenido = "";
 
@@ -86,6 +87,7 @@ class Nota {
 		/* Database operations */
 		if($exists){
 			$sql = "UPDATE ".$this->table. " SET titulo=?, contenido=? WHERE id=?";
+            echo $sql;
 			$stmt = $this->conection->prepare($sql);
 			$res = $stmt->execute([$titulo, $contenido, $id]);
 		}else{

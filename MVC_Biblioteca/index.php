@@ -71,6 +71,8 @@
     //require_once("vista/login.php") ;
     include ("vista/template/cabecera.php");
     include("vista/template/nav.php");
+
+    echo "VISTA: ".$controladorObj->view;
     include("vista/".$controladorObj->view.".php");
 
   //  Vista::render($controladorObj);
