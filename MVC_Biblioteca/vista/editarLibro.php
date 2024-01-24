@@ -38,8 +38,8 @@ if(isset($arrDatos['datos']['numPaginas'])) $paginas = $arrDatos['datos']['numPa
         </div>
         <div>
             <label>Paginas</label>
-            <input type="text" name="paginas" value="<?php echo $paginas; ?>" />
-
+            <input type="text" name="numPaginas" value="<?php echo $paginas; ?>" />
+<!--            <br /><b>Warning</b>:  Undefined variable $paginas in <b>C:\xampp\htdocs\2DAW\PHP\MVC_Biblioteca\vista\editarLibro.php</b> on line <b>41</b><br />-->
         </div>
 
         <input type="submit" value="Editar"

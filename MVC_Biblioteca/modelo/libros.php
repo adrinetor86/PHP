@@ -25,10 +25,10 @@
             // $fila = $stmt->fetch();
             $intCantRegistros = $stmt -> rowCount();
 
-            return $stmt->fetchAll();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function mostrarLibroId($id){
+        public function mostrarLibroId($libro){
 
             //print_r($id);
            // echo "BUENASSS ".$id['id']."<br>";
@@ -36,11 +36,11 @@
             $sql= 'SELECT * FROM '. $this->tabla .' WHERE idLibro=?';
 
             $stmt = $this->conection->prepare($sql);
-            $stmt->execute([$id['id']]);
+            $stmt->execute([$libro['id']]);
             // $fila = $stmt->fetch();
             $intCantRegistros = $stmt -> rowCount();
 
-            return $stmt->fetch();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
 
@@ -52,7 +52,7 @@
                 $genero=$libro['genero'];
                 $pais=$libro['pais'];
                 $ano=$libro['ano'];
-                $paginas=$libro['paginas'];
+                $paginas=$libro['numPaginas'];
 
                 echo "PAGINAS: ".$paginas;
 
@@ -66,7 +66,7 @@
             $stmt->execute([$titulo, $genero, $pais, $ano, $paginas,$id]);
 
 
-            $stmt = $this->conection->prepare($sql);
+
 
                 return $libro;
 
