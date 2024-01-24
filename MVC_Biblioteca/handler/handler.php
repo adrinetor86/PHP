@@ -64,6 +64,7 @@ private array $arrProperties;
 //                }
                     break;
                 case 'save';
+                case 'borrarLibro':
                 case 'listarLibro':
                 case 'editarLibro':
                 case 'eliminarLibro':
@@ -71,19 +72,11 @@ private array $arrProperties;
                 break;
                 }
         break;
-        //                case 'ControladorLogin':
-        //                    switch ($this->arrProperties['action']) {
-        //                        case 'checkPassword':
-        //                        case 'logout':
-        //                            $this->arrProperties['parameters'] = [];
-        //                    }
-        //                    break;
 
         }
-        }
-        }
-
     }
+  }
+}
 
     public function getController(){
     return $this->arrProperties['controller'];

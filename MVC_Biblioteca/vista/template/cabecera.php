@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="http://localhost/2DAW/PHP/MVC_Biblioteca/CSS/style.css">
 </head>
 <body>
-<div>
+
     <header>
-        <div style="margin-top: 58px;">
+
             <h1><?php echo $controladorObj->page_title; ?></h1>
 
 
@@ -19,5 +19,4 @@
 //            }
             ?>
 
-        </div>
     </header>

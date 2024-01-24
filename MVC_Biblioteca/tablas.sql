@@ -18,7 +18,7 @@
 --  pais	VARCHAR(10),
 --  ano 	integer(4),
 --  numPaginas   integer(4)) ;
-
+--
 -- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Manolito Gafotas','infantil','España',1994,192);
 -- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Crónicas de la Dragonlance','fantasía épica','USA',1987,1472);
 -- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Matilda','falntasía','UK',1988, 248);
@@ -27,7 +27,7 @@
 -- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Harry Potter y la piedra filosofal','fantasía','UK',1997,264);
 
 
---INSERT INTO usuario (email,contrasena) VALUES ('correo@gmail.com','contrasena');
+-- INSERT INTO usuario (email,contrasena) VALUES ('adrinetor81@gmail.com','1234');
 
 
 -- INSERT INTO autores VALUES (10,'Joanne','Rowling');

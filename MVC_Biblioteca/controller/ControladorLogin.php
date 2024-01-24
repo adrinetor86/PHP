@@ -9,7 +9,6 @@
         private Usuario $objUsuario;
 
 
-
         public function __construct(){
 
             $this->page_title="Login";

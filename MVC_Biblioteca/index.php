@@ -27,11 +27,13 @@
 
     if(!isset($_SESSION['login']) || $_SESSION['login']==false){
 
-            $controlador='ControladorLogin';
-            $accion='verificarCredenciales';
+        $controladorHandler='ControladorLogin';
+        $accionHandler='verificarCredenciales';
 
+        }else{
 
-        }
+    }
+
 
     if(empty($controladorHandler)) {
         $controladorHandler = constant("DEFAULT_CONTROLLER");
@@ -49,8 +51,8 @@
     /* Si no existe el fichero del controlador, indico que cargue el controlador por defecto. */
 
     if(!file_exists($controller_path)) {
-        $controller_path = 'controller/ControladorLogin.php';
-        $controladorHandler = "ControladorLogin";
+        $controller_path = 'controller/ControladorLibros.php';
+        $controladorHandler = "ControladorLibros";
     }
 
     /* Load controller */
@@ -65,15 +67,16 @@
 
     }else{
         echo "NO EXISTE ESE METODO";
-      //  $arrDatos["datos"] = $controladorObj->list($parametrosHandler);
+        $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
     }
 
     //require_once("vista/login.php") ;
-    include ("vista/template/cabecera.php");
-    include("vista/template/nav.php");
+include ("vista/template/cabecera.php");
+include("vista/template/nav.php");
 
-    echo "VISTA: ".$controladorObj->view;
-    include("vista/".$controladorObj->view.".php");
+
+   // echo "VISTA: ".$controladorObj->view;
+    require_once("vista/".$controladorObj->view.".php");
 
   //  Vista::render($controladorObj);
 

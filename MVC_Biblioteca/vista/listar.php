@@ -2,10 +2,10 @@
 
 
 if(isset($arrDatos['datos']['libros'])) $libros=$arrDatos['datos']['libros'];
+?>
 
-
-//echo "<p>TITULO: " . $libros['titulo'] . "</p>";
-
+    <a  href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/anadirLibro"><button>Insertar Libro</button></a>
+<?php
   foreach ($libros as $libro){
 
       ?>
@@ -20,7 +20,7 @@ if(isset($arrDatos['datos']['libros'])) $libros=$arrDatos['datos']['libros'];
 
            <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/editarLibro/<?php echo $libro['idLibro']; ?>"> EDITAR</a></button>
 
-           <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/eliminarLibro/<?php echo $libro['idLibro']; ?>"> ELIMINAR</a></button>
+           <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/borrarLibro/<?php echo $libro['idLibro']; ?>"> ELIMINAR</a></button>
         </div>
       <br>
 <!--      echo $libro['titulo'];-->

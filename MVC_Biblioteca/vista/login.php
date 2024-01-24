@@ -14,7 +14,7 @@
         <input type="text" name="usuario">
                 <br>
         <label>CONTRASEÑA</label>
-        <input type="text" name="contraseña">
+        <input type="password" name="contraseña">
 
         <br>
 

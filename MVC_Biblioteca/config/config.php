@@ -6,7 +6,7 @@
     const DB_PASS   = '';
 
     // Opciones por defecto
-    const DEFAULT_CONTROLLER    = "ControladorNota";
-    const DEFAULT_ACTION        = "list";
+    const DEFAULT_CONTROLLER    = "ControladorLibros";
+    const DEFAULT_ACTION        = "listarLibros";
 
     const DEFAULT_NOTES = 3;

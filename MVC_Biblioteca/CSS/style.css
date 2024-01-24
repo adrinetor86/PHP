@@ -3,3 +3,11 @@
     font-weight: bold;
     background-color: #216397;
 }
+
+#cabecera{
+    background-color: #4CAF50;
+}
+nav,header{
+    background-color: #e19b4e;
+    height: 70px;
+}

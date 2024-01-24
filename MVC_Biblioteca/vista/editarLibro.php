@@ -42,20 +42,9 @@ if(isset($arrDatos['datos']['numPaginas'])) $paginas = $arrDatos['datos']['numPa
 <!--            <br /><b>Warning</b>:  Undefined variable $paginas in <b>C:\xampp\htdocs\2DAW\PHP\MVC_Biblioteca\vista\editarLibro.php</b> on line <b>41</b><br />-->
         </div>
 
-        <input type="submit" value="Editar"
-               formaction="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/save/<?php echo $id  ?>">
-
+        <input type="submit" value="Editar" formaction="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/save/<?php echo $id ?>">
+        <input type="submit" value="Volver" formaction="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros ">
 
 
 <!--        <a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list/--><?php //echo $_SESSION['numPagina']?><!--">Cancelar</a>-->
     </form>
-
-
-
-
-
-<!--    --><?php //echo"<p>TITULO: ".$libro['titulo']."</p>";?>
-<!--    --><?php //echo "<p> GENERO: ". $libro['genero']."</p>"?>
-<!--    --><?php //echo "<p> PAIS: </label>". $libro['pais']."</p>"?>
-<!--    --><?php //echo "<p>AÑO: </label>". $libro['ano']."</p>"?>
-<!--    --><?php //echo "<p> NUM PAGINAS: </label>". $libro['numPaginas']."</p>"?>
