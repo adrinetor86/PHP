@@ -65,20 +65,25 @@
 
         $arrDatos["datos"] = $controladorObj->{$accionHandler}($parametrosHandler);
 
+        $arrDatos["datos"]['vista']= $controladorObj->getView();
+        $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle();
     }else{
         echo "NO EXISTE ESE METODO";
+        $arrDatos["datos"]['vista']= $controladorObj->getView;
+        $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle;
         $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
     }
 
-    //require_once("vista/login.php") ;
+  //  require_once("vista/login.php") ;
 include ("vista/template/cabecera.php");
 include("vista/template/nav.php");
 
 
-   // echo "VISTA: ".$controladorObj->view;
-    require_once("vista/".$controladorObj->view.".php");
+//    echo "VISTA: ".$controladorObj->view;
+   //require_once("vista/".$controladorObj->view.".php");
+    //print_r($arrDatos);
 
-  //  Vista::render($controladorObj);
+   Vista::render($arrDatos);
 
 
 

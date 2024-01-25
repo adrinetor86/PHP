@@ -15,7 +15,14 @@
             $this->view="login";
             $this->objUsuario=new Usuario();
         }
+        public function getView(){
 
+            return $this->view;
+        }
+        public function getPageTitle(){
+
+            return $this->page_title;
+        }
 
         public function verificarCredenciales($params){
 

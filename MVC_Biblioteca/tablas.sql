@@ -27,6 +27,13 @@
 -- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Harry Potter y la piedra filosofal','fantasía','UK',1997,264);
 
 
+-- create table escriben(
+--  idLibro integer(3),
+--  idPersona integer(2),
+--  primary key(idLibro,idPersona),
+--  constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
+--  constraint fk_escbiben_autores foreign key (idPersona) references autores(idPersona)) ;
+
 -- INSERT INTO usuario (email,contrasena) VALUES ('adrinetor81@gmail.com','1234');
 
 

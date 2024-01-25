@@ -1,15 +1,19 @@
 <?php
 
-
+require_once "controller/ControladorLibros.php";
 
     class Vista{
 
 
-        public static function render($objControlador){
+        public static function render($arrDatos){
 
 
-            //require_once ("/vista/".$objControlador->view.".php");
-            require_once("vista/".$controladorObj.".php") ;
+//            print_r( $arrDatos['datos']['vista']);echo "<br>";
+//            print_r( $arrDatos['datos']['pageTitle']);
+//            print_r($arrDatos['datos']['libros']);
+
+            include ("vista/".$arrDatos['datos']['vista'].".php");
+          //  require_once("vista/".$objControlador.".php") ;
         }
 
     }

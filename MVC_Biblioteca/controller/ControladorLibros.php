@@ -2,6 +2,7 @@
 
 
     require_once ("modelo/libros.php");
+
    class ControladorLibros{
        public string $page_title;
        public string $view;
@@ -15,6 +16,14 @@
 
         }
 
+        public function getView(){
+
+            return $this->view;
+        }
+        public function getPageTitle(){
+
+            return $this->page_title;
+        }
 
         public function listarLibros($params){
             $this->page_title="Listado Libros";
@@ -34,6 +43,9 @@
 //            return $libro;
 //        }
 
+        public function buscar(){
+
+        }
        public function save(){
 
            $this->view = 'editarLibro';
