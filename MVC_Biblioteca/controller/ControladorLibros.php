@@ -30,6 +30,8 @@
             $this-> view="listar";
             $libros['libros']=$this->objlibro->mostrarLibros();
 
+
+
             return $libros;
         }
 
@@ -71,6 +73,13 @@
             $this->page_title="Añadir Libro";
             $this-> view="anadirLibro";
 
+        }
+
+        public function mostrarColumna($columna){
+
+           $columnasDevueltas= $this->objlibro->buscarColumna($columna);
+
+            return $columnasDevueltas;
         }
 
         public function confirmarAnadir(){

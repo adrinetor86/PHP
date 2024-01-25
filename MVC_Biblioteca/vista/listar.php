@@ -2,6 +2,8 @@
 
 
 if(isset($arrDatos['datos']['libros'])) $libros=$arrDatos['datos']['libros'];
+if(isset($arrDatos['datos']['libros'])) $generos=$arrDatos['datos']['libros']
+
 ?>
 <form action="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/buscar" method="post">
     <div id="busqueda">
@@ -11,13 +13,33 @@ if(isset($arrDatos['datos']['libros'])) $libros=$arrDatos['datos']['libros'];
         <label>Maximo</label><input type="number" name="IdMax"><br>
 
         <label>Titulo</label><input type="number" name="Titulo" ><br>
-        <label>Genero</label><input type="number" name="Genero" ><br>
-        <label>Pais</label><input type="number" name="Pais" ><br>
+
+        <label>Genero</label><select  name="Genero">
+
+            <?php
+//
+//                foreach ($generos as $genero){
+//
+//                    echo $genero;
+//                }
+            ?>
+
+        </select><br>
+        <label>Pais</label><select  name="Pais"></select><br>
 
     </div>
 </form>
     <a  href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/anadirLibro"><button>Insertar Libro</button></a>
 <?php
+
+
+foreach ($generos as $genero) {
+
+    echo $genero['genero']."<br>";
+}
+
+//echo $arrDatos['datos']['libros'][0]['genero'];
+//print_r($arrDatos);
   foreach ($libros as $libro){
 
       ?>

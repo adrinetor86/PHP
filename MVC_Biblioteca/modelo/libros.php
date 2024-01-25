@@ -134,4 +134,15 @@
 
         }
 
+
+        public function buscarColumna($columna){
+
+
+            $sql = "SELECT DISTINCT $columna FROM " . $this->tabla ;
+
+            $stmt = $this->conection->prepare($sql);
+
+            return $stmt->execute();
+        }
+
     }

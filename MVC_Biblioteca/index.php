@@ -63,7 +63,7 @@
 
     if(method_exists($controladorObj,$accionHandler)){
 
-        $arrDatos["datos"] = $controladorObj->{$accionHandler}($parametrosHandler);
+        $arrDatos['datos']= $controladorObj->{$accionHandler}($parametrosHandler);
 
         $arrDatos["datos"]['vista']= $controladorObj->getView();
         $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle();
@@ -74,9 +74,12 @@
         $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
     }
 
+
+
+
   //  require_once("vista/login.php") ;
-include ("vista/template/cabecera.php");
-include("vista/template/nav.php");
+    include ("vista/template/cabecera.php");
+    include("vista/template/nav.php");
 
 
 //    echo "VISTA: ".$controladorObj->view;
