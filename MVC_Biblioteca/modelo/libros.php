@@ -18,8 +18,7 @@
             $this->conection = DB::conectarBD();
         }
 
-        public function mostrarLibros()
-        {
+        public function mostrarLibros(){
 
             $sql = 'SELECT * FROM ' . $this->tabla;
             // echo $sql."<br>";
@@ -134,15 +133,31 @@
 
         }
 
+        public function buscarLibros($post){
+
+            print_r($post);
+
+            $sql = "SELECT *  FROM " . $this->tabla ." WHERE 
+             IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'];
+
+            echo "EL sql: ".$sql;
+            $stmt = $this->conection->prepare($sql);
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+        }
 
         public function buscarColumna($columna){
 
 
             $sql = "SELECT DISTINCT $columna FROM " . $this->tabla ;
-
+            echo "EL sql: ".$sql;
             $stmt = $this->conection->prepare($sql);
 
-            return $stmt->execute();
+             $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
     }

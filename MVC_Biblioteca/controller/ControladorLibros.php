@@ -28,9 +28,10 @@
         public function listarLibros($params){
             $this->page_title="Listado Libros";
             $this-> view="listar";
+
             $libros['libros']=$this->objlibro->mostrarLibros();
-
-
+            $libros['genero']=$this->objlibro->buscarColumna("GENERO");
+            $libros['pais']=$this->objlibro->buscarColumna("PAIS");
 
             return $libros;
         }
@@ -47,6 +48,9 @@
 
         public function buscar(){
 
+            $librosFiltrados['libroFiltrado']=$this->objlibro->buscarLibros($_POST);
+
+            return $librosFiltrados;
         }
        public function save(){
 
