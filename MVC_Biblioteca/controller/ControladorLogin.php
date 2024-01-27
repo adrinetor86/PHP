@@ -33,9 +33,11 @@
             $datosUsuario['usuario']= $_POST['usuario'] ?? '';
             $datosUsuario['contraseña']= $_POST['contraseña'] ?? '';
 
+            if(!empty($datosUsuario['usuario']) || (!empty($datosUsuario['contraseña'])))
          $credenciales = $this->objUsuario->comprobarUsuario($_POST['usuario'],$_POST['contraseña']);
 
           //  echo "CREDENCIALES: ".$credenciales;
+
             if(!empty($datosUsuario['usuario']) || !empty($datosUsuario['contraseña'])) {
 
                     if ($credenciales == true) {

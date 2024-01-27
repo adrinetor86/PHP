@@ -20,27 +20,30 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
 
         <label>Genero</label><select  name="Genero">
 
+            <option value="">Seleccione un Genero</option>
             <?php
+
                 foreach ($generos as $genero) {
 
-                    echo "<option value=".$genero['GENERO']." >". $genero['GENERO']."</option>";
+                    echo "<option value=\"".$genero['GENERO']."\">". $genero['GENERO']."</option>";
                }
             ?>
 
         </select>
         <br>
         <label>Pais</label><select  name="Pais">
-
+            <option value="">Seleccione un Pais</option>
             <?php
             foreach ($paises as $pais) {
 
-                echo "<option value=".$pais['PAIS']." >". $pais['PAIS']."</option>";
+                echo "<option value=\"".$pais['PAIS']."\">". $pais['PAIS']."</option>";
             }
             ?>
 
         </select><br>
 
-        <label>Año</label><input type="number" name="Ano"><br>
+        <label>Año Minimo</label><input type="number" name="AnoMin"><br>
+        <label>Año Maximo</label><input type="number" name="AnoMax"><br>
         <label>Numero Paginas</label><br>
         <label>Minimo</label><input type="number" name="MinPag" >
         <label>Maximo</label><input type="number" name="MaxPag" >

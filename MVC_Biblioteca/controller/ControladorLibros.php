@@ -49,6 +49,8 @@
         public function buscar(){
 
             $librosFiltrados['libroFiltrado']=$this->objlibro->buscarLibros($_POST);
+            $librosFiltrados['genero']=$this->objlibro->buscarColumna("GENERO");
+            $librosFiltrados['pais']=$this->objlibro->buscarColumna("PAIS");
 
             return $librosFiltrados;
         }

@@ -12,9 +12,9 @@
 
     $propiedades=$capturador->getProperties();
 
-    $controladorHandler=$propiedades['controller'];
-    $accionHandler=$propiedades['action'];
-    $parametrosHandler=$propiedades['parametros'];
+    $controladorHandler=$propiedades['controller'] ?? '' ;
+    $accionHandler=$propiedades['action'] ?? '';
+    $parametrosHandler=$propiedades['parametros'] ?? '';
 
 //    echo "Controlador ". $propiedades['controller']."<br>";
 //    echo "Accion ".$propiedades['action']."<br>";
