@@ -74,13 +74,8 @@
         $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
     }
 
-
-
-
-  //  require_once("vista/login.php") ;
     include ("vista/template/cabecera.php");
     include("vista/template/nav.php");
-
 
 //    echo "VISTA: ".$controladorObj->view;
    //require_once("vista/".$controladorObj->view.".php");

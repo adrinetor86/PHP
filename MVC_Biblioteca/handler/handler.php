@@ -63,7 +63,7 @@ private array $arrProperties;
 //                $this->arrProperties['parametros']['page']=1;
 //                }
                     break;
-                case 'save';
+                  case 'save':
                 case 'borrarLibro':
                 case 'listarLibro':
                 case 'editarLibro':

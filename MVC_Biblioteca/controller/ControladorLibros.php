@@ -54,6 +54,7 @@
 
             return $librosFiltrados;
         }
+
        public function save(){
 
            $this->view = 'editarLibro';
@@ -62,7 +63,7 @@
 
          $libroEditado=  $this->objlibro->Confirmareditar($_POST);
 
-           print_r($libroEditado);
+          print_r($libroEditado);
            //$_GET["response"] = true;
 
         return $libroEditado;
@@ -71,7 +72,7 @@
 
             $this->page_title="Editar Libro";
             $this-> view="editarLibro";
-            print_r($params);
+           // print_r($params);
                 return $this->objlibro->edit($params);
 
         }

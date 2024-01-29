@@ -1,7 +1,7 @@
 -- CREATE DATABASE mvc_biblioteca;
 -- use mvc_biblioteca;
 -- CREATE TABLE autores (
--- idPersona  integer(2) primary key,
+-- idPersona  int AUTO_INCREMENT primary key,
 -- nombre  VARCHAR(20),
 -- apellido VARCHAR(14) ) ;
 
@@ -36,11 +36,11 @@
 
 -- INSERT INTO usuario (email,contrasena) VALUES ('adrinetor81@gmail.com','1234');
 
-
--- INSERT INTO autores VALUES (10,'Joanne','Rowling');
--- INSERT INTO autores VALUES (20,'John Ronald Reuel','Tolkien');
--- INSERT INTO autores VALUES (30,'Clive Staples','Lewis');
--- INSERT INTO autores VALUES (40,'Roald','Dahl');
--- INSERT INTO autores VALUES (50,'Marget','Weis');
--- INSERT INTO autores VALUES (60,'Tracy','Hickman');
--- INSERT INTO autores VALUES (70,'Elvira','Lindo');
+--
+-- INSERT INTO autores (nombre,apellido) VALUES ('Joanne','Rowling');
+-- INSERT INTO autores (nombre,apellido) VALUES ('John Ronald Reuel','Tolkien');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Clive Staples','Lewis');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Roald','Dahl');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Marget','Weis');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Tracy','Hickman');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Elvira','Lindo');

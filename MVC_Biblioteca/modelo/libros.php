@@ -11,8 +11,7 @@
         private $conection;
 
 
-        public function __construct()
-        {
+        public function __construct(){
 
             $this->tabla = "libros";
             $this->conection = DB::conectarBD();
@@ -33,7 +32,7 @@
         public function mostrarLibroId($libro){
 
 
-            print_r($libro);
+//print_r($libro);
             $sql = 'SELECT * FROM ' . $this->tabla . ' WHERE idLibro=?';
 
             $stmt = $this->conection->prepare($sql);
@@ -74,7 +73,7 @@
         }
 
         public function confirmarDelete($libro){
-            print_r($libro);
+          //  print_r($libro);
             $sql = "DELETE  FROM " . $this->tabla . " WHERE idLibro= ?";
 
             $stmt = $this->conection->prepare($sql);
@@ -96,9 +95,6 @@
 
         public function insert($Post){
 
-           // INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Manolito Gafotas','infantil','España',1994,192);
-
-          //  echo $Post['nuevoTitulo'];
             $comprobacion=false;
 
             foreach ($_POST as $valor){
@@ -117,7 +113,8 @@
             }
 
             if($comprobacion==true ){
-          echo "insertado";
+
+
                 $sql = "INSERT INTO " . $this->tabla . " (titulo,genero,pais,ano,numPaginas) VALUES
                 ('".$Post['nuevoTitulo']."','".$Post['nuevoGenero']."','".$Post['nuevoPais']."',
                 '".(int)$Post['nuevoAno']."','".(int)$Post['nuevoPag']."')";
@@ -133,6 +130,8 @@
 
         }
 
+
+        //FUNCION PARA PILLAR EL VALOR MINIMO DE LA COLUMNA QUE LE PASAMOS
         private function getMinParam(string $nombreColumna){
 
             $sql = "SELECT MIN(".$nombreColumna.") AS MinColumna FROM " . $this->tabla ;
@@ -143,7 +142,7 @@
             $filaMin=$stmt->fetch(PDO::FETCH_ASSOC);
             return $filaMin['MinColumna'];
         }
-
+        //FUNCION PARA PILLAR EL VALOR MAXIMO DE LA COLUMNA QUE LE PASAMOS
         private function getMaxParam(string $nombreColumna){
             $sql = "SELECT MAX(".$nombreColumna.") AS MaxColumna FROM " . $this->tabla ;
             //  echo "EL sql: ".$sql;
@@ -167,11 +166,7 @@
             $post['MinPag'] = (!empty($post['MinPag'])) ? $post['MinPag'] : $this->getMinParam('numPaginas');
             $post['MaxPag'] = (!empty($post['MaxPag'])) ? $post['MaxPag'] : $this->getMaxParam('numPaginas');
 
-//            $post['IdMin'] = (!isset($post['IdMin'])) ? $post['IdMin'] : 0;
-//            $post['IdMin'] = (!isset($post['IdMin'])) ? $post['IdMin'] : 0;
 
-           // $post['IdMin']=0;
-            print_r($post);
             $sql = "SELECT *  FROM " . $this->tabla ." WHERE 
             IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
              " AND  TITULO LIKE '".$post['Titulo'].
@@ -180,7 +175,6 @@
              "' AND ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
              " AND NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
 
-            echo "EL sql: ".$sql;
             $stmt = $this->conection->prepare($sql);
 
             $stmt->execute();
@@ -191,12 +185,11 @@
 
         public function buscarColumna($columna){
 
-
             $sql = "SELECT DISTINCT $columna FROM ". $this->tabla ;
-            echo "EL sql: ".$sql;
+
             $stmt = $this->conection->prepare($sql);
 
-             $stmt->execute();
+            $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
