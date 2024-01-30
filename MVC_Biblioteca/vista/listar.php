@@ -4,6 +4,7 @@
 if(isset($arrDatos['datos']['libros'])) $libros=$arrDatos['datos']['libros'];
 if(isset($arrDatos['datos']['genero'])) $generos=$arrDatos['datos']['genero'];
 if(isset($arrDatos['datos']['pais'])) $paises=$arrDatos['datos']['pais'];
+if(isset($arrDatos['datos']['autor'])) $autores=$arrDatos['datos']['autor'];
 if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['datos']['libroFiltrado'];
     //print_r($generos);
     //print_r($arrDatos['datos']);
@@ -39,8 +40,9 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
                 echo "<option value=\"".$pais['PAIS']."\">". $pais['PAIS']."</option>";
             }
             ?>
-
         </select><br>
+
+
 
         <label>Año Minimo</label><input type="number" name="AnoMin"><br>
         <label>Año Maximo</label><input type="number" name="AnoMax"><br>
@@ -48,6 +50,15 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
         <label>Minimo</label><input type="number" name="MinPag" >
         <label>Maximo</label><input type="number" name="MaxPag" >
 
+        <label>Autor</label>  <select  name="Autor">
+            <option value="" >Selecciona un Autor</option>
+            <?php
+            foreach ($autores as $autor) {
+
+                echo "<option value=\"".$autor['idPersona'] ."\">". $autor['nombre'] .' '. $autor['apellido']."</option>";
+            }
+            ?>
+        </select><br>
         <input type="submit" value="Buscar">
     </div>
 </form>

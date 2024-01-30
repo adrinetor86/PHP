@@ -19,12 +19,13 @@
 --  ano 	integer(4),
 --  numPaginas   integer(4)) ;
 --
--- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Manolito Gafotas','infantil','España',1994,192);
--- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Crónicas de la Dragonlance','fantasía épica','USA',1987,1472);
--- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Matilda','falntasía','UK',1988, 248);
--- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('El león, la bruja y el armario','fantasía','UK',1950,240);
--- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('el hobbit','Fantasía heroica','UK',1937,288);
--- INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Harry Potter y la piedra filosofal','fantasía','UK',1997,264);
+
+-- INSERT INTO autores (nombre,apellido) VALUES ('Elvira','Lindo');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Marget','Weis');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Roald','Dahl');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Clive Staples','Lewis');
+-- INSERT INTO autores (nombre,apellido) VALUES ('John Ronald Reuel','Tolkien');
+-- INSERT INTO autores (nombre,apellido) VALUES ('Joanne','Rowling');
 
 
 -- create table escriben(
@@ -44,3 +45,34 @@
 -- INSERT INTO autores (nombre,apellido) VALUES ('Marget','Weis');
 -- INSERT INTO autores (nombre,apellido) VALUES ('Tracy','Hickman');
 -- INSERT INTO autores (nombre,apellido) VALUES ('Elvira','Lindo');
+
+
+-- drop TABLE escriben;
+--
+-- TRUNCATE autores;
+--
+-- TRUNCATE libros;
+
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Manolito Gafotas','infantil','España',1994,192);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Crónicas de la Dragonlance','fantasía épica','USA',1987,1472);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Matilda','falntasía','UK',1988, 248);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('El león, la bruja y el armario','fantasía','UK',1950,240);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('El hobbit','Fantasía heroica','UK',1937,288);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Harry Potter y la piedra filosofal','fantasía','UK',1997,264);
+
+
+INSERT INTO autores (nombre,apellido) VALUES ('Elvira','Lindo');
+INSERT INTO autores (nombre,apellido) VALUES ('Marget','Weis');
+INSERT INTO autores (nombre,apellido) VALUES ('Roald','Dahl');
+INSERT INTO autores (nombre,apellido) VALUES ('Clive Staples','Lewis');
+INSERT INTO autores (nombre,apellido) VALUES ('John Ronald Reuel','Tolkien');
+INSERT INTO autores (nombre,apellido) VALUES ('Joanne','Rowling');
+
+
+
+insert INTO escriben VALUES(1,1);
+insert INTO escriben VALUES(2,2);
+insert INTO escriben VALUES(3,3);
+insert INTO escriben VALUES(4,4);
+insert INTO escriben VALUES(5,5);
+insert INTO escriben VALUES(6,6);

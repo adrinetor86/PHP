@@ -8,5 +8,9 @@
 <input type="number" placeholder="Año" name="nuevoAno"><br>
 <input type="number" placeholder="Paginas" name="nuevoPag"><br>
 
+ <label>AUTOR</label>   <br>
+<input type="text" placeholder="Nombre" name="nombreAutor">
+<input type="text" placeholder="Apellido" name="apellidoAutor">
+
     <input type="submit" value="Insertar">
 </form>

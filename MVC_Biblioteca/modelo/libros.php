@@ -175,6 +175,7 @@
              "' AND ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
              " AND NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
 
+            echo $sql;
             $stmt = $this->conection->prepare($sql);
 
             $stmt->execute();
@@ -192,5 +193,16 @@
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+        public function buscarColumnaAutores(){
+
+            $sql = "SELECT * FROM AUTORES";
+            echo $sql;
+            $stmt = $this->conection->prepare($sql);
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
 
     }

@@ -51,6 +51,10 @@
             $librosFiltrados['libroFiltrado']=$this->objlibro->buscarLibros($_POST);
             $librosFiltrados['genero']=$this->objlibro->buscarColumna("GENERO");
             $librosFiltrados['pais']=$this->objlibro->buscarColumna("PAIS");
+            $librosFiltrados['autor']=$this->objlibro->buscarColumnaAutores();
+
+
+           print_r($librosFiltrados['autor']);
 
             return $librosFiltrados;
         }
