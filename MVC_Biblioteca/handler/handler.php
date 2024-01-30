@@ -72,8 +72,19 @@ private array $arrProperties;
                 break;
                 }
         break;
+            case 'ControladorAutores':
 
+                switch ($this->arrProperties['action']) {
+
+                    case 'editarAutor':
+                        $this->arrProperties['parametros']['id'] = $auxParametros[0] ?? '';
+                        break;
+                }
         }
+
+
+
+
     }
   }
 }

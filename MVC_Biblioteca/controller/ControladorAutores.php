@@ -23,6 +23,21 @@ class ControladorAutores{
 
     }
 
+    public function buscarAutores(){
+
+
+        $autoresEncontrados['autoresEncontrados']=$this->objAutor->buscarLibros($_POST);
+//            $librosFiltrados['genero']=$this->objAutor->buscarColumna("GENERO");
+//            $librosFiltrados['pais']=$this->objAutor->buscarColumna("PAIS");
+/*        echo "AUTORES: <BR>";
+            print_r($autoresEncontrados['autoresEncontrados']);
+        echo "<BR>";
+*/            return $autoresEncontrados;
+
+    }
+
+
+
     public function getView(){
 
         return $this->view;

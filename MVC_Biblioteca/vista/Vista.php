@@ -1,6 +1,6 @@
 <?php
 
-require_once "controller/ControladorLibros.php";
+//require_once "controller/ControladorLibros.php";
 
     class Vista{
 

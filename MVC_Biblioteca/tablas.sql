@@ -29,7 +29,7 @@
 
 -- create table escriben(
 --  idLibro integer(3),
---  idPersona integer(2),
+--  idPersona integer(3),
 --  primary key(idLibro,idPersona),
 --  constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
 --  constraint fk_escbiben_autores foreign key (idPersona) references autores(idPersona)) ;

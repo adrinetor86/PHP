@@ -1,9 +1,13 @@
-.div-libros{
 
+
+.div-libros{
     font-weight: bold;
     background-color: #216397;
 }
-
+.div-autores{
+    font-weight: bold;
+    background-color: #216397;
+}
 #cabecera{
     background-color: #4CAF50;
 }
