@@ -21,9 +21,8 @@
 
           //  $sql = 'SELECT * FROM ' . $this->tabla;
 
-       $sql  = ' SELECT escriben.idLibro,titulo,genero,pais,ano,numPaginas,nombre,apellido
+         $sql  = ' SELECT escriben.idLibro,titulo,genero,pais,ano,numPaginas,nombre,apellido
           from libros,escriben,autores where escriben.idLibro = libros.idLibro and escriben.idPersona=autores.idPersona';
-
 
             // echo $sql."<br>";
             $stmt = $this->conection->prepare($sql);
@@ -34,11 +33,23 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        public function mostrarAutores(){
+
+            $sql=" SELECT * FROM AUTORES";
+            $stmt = $this->conection->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function mostrarLibroId($libro){
 
+        //print_r($libro);
 
-//print_r($libro);
-            $sql = 'SELECT * FROM ' . $this->tabla . ' WHERE idLibro=?';
+            //$sql = 'SELECT * FROM ' . $this->tabla . ' WHERE idLibro=?';
+
+            $sql = "SELECT * FROM LIBROS,ESCRIBEN,AUTORES WHERE LIBROS.idLibro=? AND ESCRIBEN.idLibro = LIBROS.idLibro AND ESCRIBEN.idPersona = AUTORES.idPersona";
+
+
 
             $stmt = $this->conection->prepare($sql);
             $stmt->execute([$libro['id']]);
@@ -93,6 +104,7 @@
         public function edit($param){
 
             $libro = $this->mostrarLibroId($param);
+            $libro['autores'] =$this->mostrarAutores();
             return $libro;
 
         }
@@ -188,9 +200,9 @@
             $post['MaxPag'] = (!empty($post['MaxPag'])) ? $post['MaxPag'] : $this->getMaxParam('numPaginas');
 
 
-            //aqui
-            $post['Autor']=  (!empty($post['Autor'])) ? $post['Autor'] : $this->getMinParam('idLibro');
-            $post['Autor'] = (!empty($post['Autor'])) ? $post['Autor'] :  $this->getMaxParam('idLibro');
+            //LE PASO
+            $post['Autor']=  (!empty($post['Autor'])) ? " AND AUTORES.IDPERSONA = '".$post['Autor'] ."'" : " AND AUTORES.IDPERSONA LIKE '%%'";
+
 
 
 
@@ -202,7 +214,7 @@
                 "' AND LIBROS.PAIS LIKE '".$post['Pais'].
                 "' AND LIBROS.ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
                 " AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'].
-                " AND AUTORES.IDPERSONA BETWEEN ".$post['Autor']." AND ".$post['Autor'].
+                $post['Autor'].
                 " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
 
 

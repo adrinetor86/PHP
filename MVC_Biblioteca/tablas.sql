@@ -51,11 +51,11 @@
 -- from libros,escriben,autores where escriben.idLibro = libros.idLibro and escriben.idPersona=autores.idPersona;
 
 
--- drop TABLE escriben;
---
--- TRUNCATE autores;
---
--- TRUNCATE libros;
+drop TABLE escriben;
+
+TRUNCATE autores;
+
+TRUNCATE libros;
 
 INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Manolito Gafotas','infantil','España',1994,192);
 INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Crónicas de la Dragonlance','fantasía épica','USA',1987,1472);

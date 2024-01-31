@@ -6,9 +6,11 @@ if(isset($arrDatos['datos']['genero'])) $genero = $arrDatos['datos']['genero'];
 if(isset($arrDatos['datos']['pais'])) $pais = $arrDatos['datos']['pais'];
 if(isset($arrDatos['datos']['ano'])) $ano = $arrDatos['datos']['ano'];
 if(isset($arrDatos['datos']['numPaginas'])) $paginas = $arrDatos['datos']['numPaginas'];
-
-//echo "PRUEBA ID: ".$id;
+if(isset($arrDatos['datos']['nombre'])) $nombre = $arrDatos['datos']['nombre'];
+if(isset($arrDatos['datos']['apellido'])) $apellido = $arrDatos['datos']['apellido'];
+if(isset($arrDatos['datos']['autores'])) $autores = $arrDatos['datos']['autores'];
 //echo "PRUEBA TITULO: ".$titulo;
+//print_r($arrDatos['datos'])
     ?>
 
 
@@ -39,6 +41,24 @@ if(isset($arrDatos['datos']['numPaginas'])) $paginas = $arrDatos['datos']['numPa
         <div>
             <label>Paginas</label>
             <input type="text" name="numPaginas" value="<?php echo $paginas; ?>" />
+
+            <label>Autor</label>
+            <select name="AUTOR">
+
+                <?php
+
+                echo "<option value=\"".$arrDatos['datos']['idPersona'] ."\">". $nombre .' '. $apellido."</option>";
+
+                foreach ($autores as $autor){
+
+                echo "<option value=\"".$autor['idPersona'] ."\">". $autor['nombre'] .' '. $autor['apellido']."</option>";
+
+                }
+
+                ?>
+            </select>
+
+<!--            <input type="text" name="Autor" value="--><?php //echo $titulo; ?><!--" />-->
 <!--            <br /><b>Warning</b>:  Undefined variable $paginas in <b>C:\xampp\htdocs\2DAW\PHP\MVC_Biblioteca\vista\editarLibro.php</b> on line <b>41</b><br />-->
         </div>
 

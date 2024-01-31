@@ -52,11 +52,14 @@
             return $librosFiltrados;
         }
 
+        //TENGO QUE IMPLEMENTAR LA TABLA AUTORES EN SAVE
        public function save(){
 
            $this->view = 'editarLibro';
            $this->page_title = 'Editar Libro';
            $_POST['edit'] = true;
+
+
 
          $libroEditado=  $this->objlibro->Confirmareditar($_POST);
 
