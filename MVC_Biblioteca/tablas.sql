@@ -47,6 +47,10 @@
 -- INSERT INTO autores (nombre,apellido) VALUES ('Elvira','Lindo');
 
 
+-- SELECT escriben.idLibro,titulo,genero,pais,ano,numPaginas,escriben.idPersona,nombre,apellido
+-- from libros,escriben,autores where escriben.idLibro = libros.idLibro and escriben.idPersona=autores.idPersona;
+
+
 -- drop TABLE escriben;
 --
 -- TRUNCATE autores;

@@ -68,7 +68,7 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
 
 
 //echo $arrDatos['datos']['libros'][0]['genero'];
-//print_r($arrDatos);
+//print_r($arrDatos['datos']['autor']);
 
 //HE PUESTO LA CONDICION DEL ISSET PARA IMPRIMIR LA BUSQUEDA O TODOS LOS LIBROS
 
@@ -84,7 +84,7 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
             <?php echo "<p> PAIS: </label>". $libro['pais']."</p>"?>
             <?php echo "<p>AÑO: </label>". $libro['ano']."</p>"?>
             <?php echo "<p> NUM PAGINAS: </label>". $libro['numPaginas']."</p>"?>
-
+            <?php echo "<p> AUTOR: </label>". $libro['nombre'] .' '.$libro['apellido']."</p>"?>
 
             <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/editarLibro/<?php echo $libro['idLibro']; ?>"> EDITAR</a></button>
 
@@ -98,6 +98,7 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
 
 }else{
 
+   // print_r($librosFiltrados);
     foreach ($librosFiltrados as $libroFiltrado){
 
         ?>
@@ -108,7 +109,7 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
             <?php echo "<p> PAIS: </label>". $libroFiltrado['pais']."</p>"?>
             <?php echo "<p>AÑO: </label>". $libroFiltrado['ano']."</p>"?>
             <?php echo "<p> NUM PAGINAS: </label>". $libroFiltrado['numPaginas']."</p>"?>
-
+            <?php echo "<p> AUTOR: </label>". $libroFiltrado['nombre'] .' '.$libroFiltrado['apellido']."</p>"?>
 
             <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/editarLibro/<?php echo $libroFiltrado['idLibro']; ?>"> EDITAR</a></button>
 

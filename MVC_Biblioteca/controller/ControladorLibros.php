@@ -32,25 +32,18 @@
             $libros['libros']=$this->objlibro->mostrarLibros();
             $libros['genero']=$this->objlibro->buscarColumna("GENERO");
             $libros['pais']=$this->objlibro->buscarColumna("PAIS");
-
+            $libros['autor']=$this->objlibro->buscarColumnaAutores();
             return $libros;
         }
 
-//        public function listarLibro($params){
-//
-//            $this->page_title="Listado Libros";
-//            $this-> view="listarLibro";
-//            $id = $params['id'];
-//            $libro['libro']= $this->objlibro->mostrarLibroId($id);
-//
-//            return $libro;
-//        }
+
 
         public function buscar(){
 
             $librosFiltrados['libroFiltrado']=$this->objlibro->buscarLibros($_POST);
             $librosFiltrados['genero']=$this->objlibro->buscarColumna("GENERO");
             $librosFiltrados['pais']=$this->objlibro->buscarColumna("PAIS");
+
             $librosFiltrados['autor']=$this->objlibro->buscarColumnaAutores();
 
 

@@ -19,7 +19,12 @@
 
         public function mostrarLibros(){
 
-            $sql = 'SELECT * FROM ' . $this->tabla;
+          //  $sql = 'SELECT * FROM ' . $this->tabla;
+
+       $sql  = ' SELECT escriben.idLibro,titulo,genero,pais,ano,numPaginas,nombre,apellido
+          from libros,escriben,autores where escriben.idLibro = libros.idLibro and escriben.idPersona=autores.idPersona';
+
+
             // echo $sql."<br>";
             $stmt = $this->conection->prepare($sql);
             $stmt->execute();
@@ -134,7 +139,16 @@
         //FUNCION PARA PILLAR EL VALOR MINIMO DE LA COLUMNA QUE LE PASAMOS
         private function getMinParam(string $nombreColumna){
 
-            $sql = "SELECT MIN(".$nombreColumna.") AS MinColumna FROM " . $this->tabla ;
+            if($nombreColumna=='idPersona'){
+
+                $sql = "SELECT MIN(".$nombreColumna.") AS MinColumna FROM AUTORES" ;
+            }else{
+                $sql = "SELECT MIN(".$nombreColumna.") AS MinColumna FROM " . $this->tabla ;
+            }
+
+
+
+
           //  echo "EL sql: ".$sql;
             $stmt = $this->conection->prepare($sql);
 
@@ -144,7 +158,14 @@
         }
         //FUNCION PARA PILLAR EL VALOR MAXIMO DE LA COLUMNA QUE LE PASAMOS
         private function getMaxParam(string $nombreColumna){
-            $sql = "SELECT MAX(".$nombreColumna.") AS MaxColumna FROM " . $this->tabla ;
+
+            if($nombreColumna=='idPersona'){
+
+                $sql = "SELECT MAX(".$nombreColumna.") AS MaxColumna FROM AUTORES" ;
+            }else{
+                $sql = "SELECT MAX(".$nombreColumna.") AS MaxColumna FROM " . $this->tabla ;
+            }
+
             //  echo "EL sql: ".$sql;
             $stmt = $this->conection->prepare($sql);
 
@@ -167,14 +188,32 @@
             $post['MaxPag'] = (!empty($post['MaxPag'])) ? $post['MaxPag'] : $this->getMaxParam('numPaginas');
 
 
-            $sql = "SELECT *  FROM " . $this->tabla ." WHERE 
-            IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
-             " AND  TITULO LIKE '".$post['Titulo'].
-             "' AND GENERO LIKE '".$post['Genero'].
-             "' AND PAIS LIKE '".$post['Pais'].
-             "' AND ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
-             " AND NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
+            //aqui
+            $post['Autor']=  (!empty($post['Autor'])) ? $post['Autor'] : $this->getMinParam('idLibro');
+            $post['Autor'] = (!empty($post['Autor'])) ? $post['Autor'] :  $this->getMaxParam('idLibro');
 
+
+
+            $sql = "SELECT *  FROM  LIBROS,AUTORES,ESCRIBEN WHERE 
+                                   
+                 LIBROS.IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
+                " AND  LIBROS.TITULO LIKE '".$post['Titulo'].
+                "' AND LIBROS.GENERO LIKE '".$post['Genero'].
+                "' AND LIBROS.PAIS LIKE '".$post['Pais'].
+                "' AND LIBROS.ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
+                " AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'].
+                " AND AUTORES.IDPERSONA BETWEEN ".$post['Autor']." AND ".$post['Autor'].
+                " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
+
+
+//            $sql = "SELECT *  FROM " . $this->tabla ." WHERE
+//            IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
+//             " AND  TITULO LIKE '".$post['Titulo'].
+//             "' AND GENERO LIKE '".$post['Genero'].
+//             "' AND PAIS LIKE '".$post['Pais'].
+//             "' AND ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
+//             " AND NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
+           // $post['Autor']
             echo $sql;
             $stmt = $this->conection->prepare($sql);
 
