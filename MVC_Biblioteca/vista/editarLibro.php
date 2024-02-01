@@ -43,7 +43,7 @@ if(isset($arrDatos['datos']['autores'])) $autores = $arrDatos['datos']['autores'
             <input type="text" name="numPaginas" value="<?php echo $paginas; ?>" />
 
             <label>Autor</label>
-            <select name="AUTOR">
+            <select name="Autor">
 
                 <?php
 

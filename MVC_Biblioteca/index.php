@@ -69,7 +69,7 @@
         $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle();
     }else{
         echo "NO EXISTE ESE METODO";
-        $arrDatos["datos"]['vista']= $controladorObj->getView;
+        $arrDatos["datos"]['vista']= $controladorObj->getView();
         $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle;
         $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
     }

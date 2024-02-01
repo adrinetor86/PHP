@@ -59,11 +59,9 @@
            $this->page_title = 'Editar Libro';
            $_POST['edit'] = true;
 
-
-
          $libroEditado=  $this->objlibro->Confirmareditar($_POST);
-
-          print_r($libroEditado);
+         $libroEditado['autores'] =$this->objlibro->mostrarAutores();
+          print_r( $libroEditado);
            //$_GET["response"] = true;
 
         return $libroEditado;
@@ -73,6 +71,7 @@
             $this->page_title="Editar Libro";
             $this-> view="editarLibro";
            // print_r($params);
+
                 return $this->objlibro->edit($params);
 
         }
@@ -92,7 +91,7 @@
         public function confirmarAnadir(){
 
             $this->objlibro->insert($_POST);
-          header("Location: http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros");
+            header("Location: http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros");
         }
         public function borrarLibro($libro){
 
@@ -107,7 +106,7 @@
 
 
             $this->page_title="Borrar Libro";
-             $this->view="borrarLibro";
+            $this->view="borrarLibro";
 
             header("Location: http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros");
             return $this->objlibro->confirmarDelete($_POST['id']);

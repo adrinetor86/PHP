@@ -61,21 +61,33 @@
 
 
         public function Confirmareditar($libro){
-
-            $id = $libro['idLibro'];
+          //  $libro['autores'] =$this->mostrarAutores();
+            $idLibro = $libro['idLibro'];
             $titulo = $libro['titulo'];
             $genero = $libro['genero'];
             $pais = $libro['pais'];
             $ano = $libro['ano'];
             $paginas = $libro['numPaginas'];
+            $idPersona =$libro['Autor'];
 
+           // print_r($libro);
             echo "PAGINAS: " . $paginas;
 
-            $sql = "UPDATE " . $this->tabla . " SET titulo=?, genero=?, pais=? , ano=?, numPaginas=? WHERE idLibro=?";
 
-            $stmt = $this->conection->prepare($sql);
+            $sql= "UPDATE LIBROS,AUTORES,ESCRIBEN
+            SET LIBROS.titulo=?,
+            LIBROS.genero=?,
+            LIBROS.pais=?,
+            LIBROS.ano=?,
+            LIBROS.numPaginas=?,
+            ESCRIBEN.idPersona=?
+            WHERE LIBROS.idLibro=?
+            AND ESCRIBEN.idLibro=LIBROS.idLibro AND ESCRIBEN.idPersona=AUTORES.idPersona";
 
-            $stmt->execute([$titulo, $genero, $pais, $ano, $paginas, $id]);
+
+           $stmt = $this->conection->prepare($sql);
+
+           $stmt->execute([$titulo, $genero, $pais, $ano, $paginas,$idPersona,$idLibro]);
 
             return $libro;
         }
@@ -105,6 +117,7 @@
 
             $libro = $this->mostrarLibroId($param);
             $libro['autores'] =$this->mostrarAutores();
+            print_r($libro);
             return $libro;
 
         }
