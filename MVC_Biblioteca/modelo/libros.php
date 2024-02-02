@@ -213,7 +213,7 @@
             $post['MaxPag'] = (!empty($post['MaxPag'])) ? $post['MaxPag'] : $this->getMaxParam('numPaginas');
 
 
-            //LE PASO
+            // CON UNA CONDICION O ALGO VIENDO LA LONGITUD DEL ARRAY PODRIA SABER SI SE PASA MAS DE UN AUTOR
             $post['Autor']=  (!empty($post['Autor'])) ? " AND AUTORES.IDPERSONA = '".$post['Autor'] ."'" : " AND AUTORES.IDPERSONA LIKE '%%'";
 
 

@@ -6,7 +6,7 @@ if(isset($arrDatos['datos']['genero'])) $generos=$arrDatos['datos']['genero'];
 if(isset($arrDatos['datos']['pais'])) $paises=$arrDatos['datos']['pais'];
 if(isset($arrDatos['datos']['autor'])) $autores=$arrDatos['datos']['autor'];
 if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['datos']['libroFiltrado'];
-    //print_r($generos);
+    print_r($librosFiltrados);
     //print_r($arrDatos['datos']);
 
 ?>
@@ -33,8 +33,16 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
         </select>
         <br>
         <label>Pais</label><select  name="Pais">
+
+            <?php if(isset ($arrDatos['datos']['libroFiltrado'])){
+
+                echo "<option value=\"".$arrDatos['datos']['libroFiltrado']['pais']."\">".$librosFiltrados[0]['pais']."</option>";
+
+            }else{
+            ?>
             <option value="">Seleccione un Pais</option>
             <?php
+            }
             foreach ($paises as $pais) {
 
                 echo "<option value=\"".$pais['PAIS']."\">". $pais['PAIS']."</option>";
@@ -50,7 +58,7 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
         <label>Minimo</label><input type="number" name="MinPag" >
         <label>Maximo</label><input type="number" name="MaxPag" >
 
-        <label>Autor</label>  <select  name="Autor">
+        <label>Autor</label>  <select name="Autor">
             <option value="" >Selecciona un Autor</option>
             <?php
             foreach ($autores as $autor) {

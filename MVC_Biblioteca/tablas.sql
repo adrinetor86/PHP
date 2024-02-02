@@ -106,3 +106,11 @@ SET LIBROS.titulo='Manolito Gafotas',
     ESCRIBEN.idPersona=3
 WHERE libros.idLibro=1
   AND ESCRIBEN.idLibro=LIBROS.idLibro AND ESCRIBEN.idPersona=AUTORES.idPersona;
+
+
+
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Jacintock','terror','Inglaterra',1997,191);
+
+INSERT INTO autores (nombre,apellido) VALUES ('Adrian','Jacek');
+
+insert INTO escriben VALUES(7,3);
