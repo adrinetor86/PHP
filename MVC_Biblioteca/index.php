@@ -53,6 +53,7 @@
     if(!file_exists($controller_path)) {
         $controller_path = 'controller/ControladorLibros.php';
         $controladorHandler = "ControladorLibros";
+        $accionHandler="listarLibros";
     }
 
     /* Load controller */
@@ -70,7 +71,7 @@
     }else{
         echo "NO EXISTE ESE METODO";
         $arrDatos["datos"]['vista']= $controladorObj->getView();
-        $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle;
+        $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle();
         $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
     }
 

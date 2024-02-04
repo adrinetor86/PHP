@@ -6,7 +6,7 @@ if(isset($arrDatos['datos']['genero'])) $generos=$arrDatos['datos']['genero'];
 if(isset($arrDatos['datos']['pais'])) $paises=$arrDatos['datos']['pais'];
 if(isset($arrDatos['datos']['autor'])) $autores=$arrDatos['datos']['autor'];
 if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['datos']['libroFiltrado'];
-    print_r($librosFiltrados);
+  //  print_r($librosFiltrados);
     //print_r($arrDatos['datos']);
 
 ?>
@@ -92,8 +92,15 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
             <?php echo "<p> PAIS: </label>". $libro['pais']."</p>"?>
             <?php echo "<p>AÑO: </label>". $libro['ano']."</p>"?>
             <?php echo "<p> NUM PAGINAS: </label>". $libro['numPaginas']."</p>"?>
-            <?php echo "<p> AUTOR: </label>". $libro['nombre'] .' '.$libro['apellido']."</p>"?>
 
+            <?php
+
+
+            echo "<p> AUTOR: </label>" ;
+             foreach ($libro['nombreCompleto'] as $autor) {
+                 echo  $autor."</p>";
+             }
+         ?>
             <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/editarLibro/<?php echo $libro['idLibro']; ?>"> EDITAR</a></button>
 
             <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/borrarLibro/<?php echo $libro['idLibro']; ?>"> ELIMINAR</a></button>

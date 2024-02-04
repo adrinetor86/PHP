@@ -1,4 +1,8 @@
+<?php
 
+if(isset($arrDatos['datos']['autores'])) $autores =$arrDatos['datos']['autores'];
+
+?>
 
 <form action="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/confirmarAnadir" method="POST">
 
@@ -9,8 +13,19 @@
 <input type="number" placeholder="Paginas" name="nuevoPag"><br>
 
  <label>AUTOR</label>   <br>
-<input type="text" placeholder="Nombre" name="nombreAutor">
-<input type="text" placeholder="Apellido" name="apellidoAutor">
+    <select name="autores[]" multiple>
+
+       <?php
+
+       foreach ($autores as $autor){
+           ?>
+
+           <option value="<?php echo $autor['idPersona'] ?>"><?php echo $autor['nombre'].' '.$autor['apellido']  ?></option>
+
+       <?php
+       };
+       ?>
+    </select>
 
     <input type="submit" value="Insertar">
 </form>

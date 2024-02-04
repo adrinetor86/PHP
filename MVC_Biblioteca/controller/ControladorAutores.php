@@ -23,6 +23,14 @@ class ControladorAutores{
 
     }
 
+    public function editarAutor(){
+
+        $autores['autores']=$this->objAutor->listar();
+
+        return $autores;
+
+    }
+
     public function buscarAutores(){
 
 
@@ -33,7 +41,6 @@ class ControladorAutores{
             print_r($autoresEncontrados['autoresEncontrados']);
         echo "<BR>";
 */            return $autoresEncontrados;
-
     }
 
 

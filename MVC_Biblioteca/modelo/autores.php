@@ -30,6 +30,32 @@ class Autores{
 
     }
 
+    public function mostrarAutores(){
+
+        $sql= "SELECT * FROM ".$this->tabla ." ORDER BY NOMBRE";
+
+        $stmt = $this->conection->prepare($sql);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+
+    //MUESTRA LOS AUTORES POR EL ID DE LIBRO
+    public function mostrarAutoresPorId($id){
+
+        $sql= "SELECT escriben.idPersona , concat(nombre,' ',apellido) as nombreCompleto
+               FROM escriben,autores WHERE escriben.idPersona=autores.idPersona and escriben.idLibro=$id.";
+
+        $stmt = $this->conection->prepare($sql);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
     //FUNCION PARA PILLAR EL VALOR MINIMO DE LA COLUMNA QUE LE PASAMOS
     private function getMinParam(string $nombreColumna){
 
@@ -58,13 +84,6 @@ class Autores{
         $post['IdMax'] = (!empty($post['IdMax'])) ? $post['IdMax'] : $this->getMaxParam('idPersona');
         $post['Nombre']= "%".$post['Nombre']."%";
         $post['Apellido']=  (!empty($post['Apellido'])) ? $post['Apellido'] : "%%";
-//        $post['Pais']=  (!empty($post['Pais'])) ? $post['Pais'] : "%%";
-
-//        $post['AnoMin'] = (!empty($post['AnoMin'])) ? $post['AnoMin'] : $this->getMinParam('ano');
-//        $post['AnoMax'] = (!empty($post['AnoMax'])) ? $post['AnoMax'] : $this->getMaxParam('ano');
-//
-//        $post['MinPag'] = (!empty($post['MinPag'])) ? $post['MinPag'] : $this->getMinParam('numPaginas');
-//        $post['MaxPag'] = (!empty($post['MaxPag'])) ? $post['MaxPag'] : $this->getMaxParam('numPaginas');
 
 
         $sql = "SELECT *  FROM " . $this->tabla ." WHERE 

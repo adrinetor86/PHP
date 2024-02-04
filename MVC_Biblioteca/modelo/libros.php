@@ -15,14 +15,14 @@
 
             $this->tabla = "libros";
             $this->conection = DB::conectarBD();
+            $this-> objAutores=new Autores();
         }
 
         public function mostrarLibros(){
 
           //  $sql = 'SELECT * FROM ' . $this->tabla;
 
-         $sql  = ' SELECT escriben.idLibro,titulo,genero,pais,ano,numPaginas,nombre,apellido
-          from libros,escriben,autores where escriben.idLibro = libros.idLibro and escriben.idPersona=autores.idPersona';
+         $sql  = ' SELECT idLibro,titulo,genero,pais,ano,numPaginas from libros';
 
             // echo $sql."<br>";
             $stmt = $this->conection->prepare($sql);
@@ -30,7 +30,32 @@
             // $fila = $stmt->fetch();
             $intCantRegistros = $stmt->rowCount();
 
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $libros=[];
+
+            while($libro=$stmt->fetch(PDO::FETCH_ASSOC)){
+
+              $arrAutores= $this->aniadeAutores($libro);
+
+              foreach ($arrAutores as $autor){
+
+                  //Meto el [] para que en caso de que haya varios valores, no se sobreescriban
+                  $libro['idPersona'][]=$autor['idPersona'];
+                  $libro['nombreCompleto'][]=$autor['nombreCompleto'];
+              }
+                //Mete al array libros los datos de libro
+            array_push($libros,$libro);
+            }
+
+          //  print_r($libros);
+            return $libros;
+        }
+
+        //Devuelve UN ARRAY CON LOS RESULTADOS ENCONTRADOS DE AUTORES POR IDLIBRO
+        private function aniadeAutores($libro){
+
+                $autor=new Autores();
+
+            return $autor->mostrarAutoresPorId($libro['idLibro']);
         }
 
         public function mostrarAutores(){
@@ -43,13 +68,8 @@
 
         public function mostrarLibroId($libro){
 
-        //print_r($libro);
-
-            //$sql = 'SELECT * FROM ' . $this->tabla . ' WHERE idLibro=?';
 
             $sql = "SELECT * FROM LIBROS,ESCRIBEN,AUTORES WHERE LIBROS.idLibro=? AND ESCRIBEN.idLibro = LIBROS.idLibro AND ESCRIBEN.idPersona = AUTORES.idPersona";
-
-
 
             $stmt = $this->conection->prepare($sql);
             $stmt->execute([$libro['id']]);
@@ -58,7 +78,6 @@
 
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
-
 
         public function Confirmareditar($libro){
           //  $libro['autores'] =$this->mostrarAutores();
@@ -72,7 +91,6 @@
 
            // print_r($libro);
             echo "PAGINAS: " . $paginas;
-
 
             $sql= "UPDATE LIBROS,AUTORES,ESCRIBEN
             SET LIBROS.titulo=?,
@@ -116,12 +134,11 @@
         public function edit($param){
 
             $libro = $this->mostrarLibroId($param);
-            $libro['autores'] =$this->mostrarAutores();
+            $libro['autores'] =$this->objAutores->mostrarAutores();
             print_r($libro);
             return $libro;
 
         }
-
 
         public function insert($Post){
 
@@ -129,35 +146,52 @@
 
             foreach ($_POST as $valor){
 
-                echo $valor."<br>";
+               // echo $valor."<br>";
 
-                if(!empty(trim($valor)) && trim($valor)!=null){
+                if(!is_array($valor)){
 
-                    $comprobacion=true;
-                }else{
+                    if(!empty(trim($valor)) && trim($valor)!=null){
 
-                    $comprobacion=false;
-                    break;
+                        $comprobacion=true;
+                    }else{
+
+                        $comprobacion=false;
+                        break;
+                    }
                 }
-
             }
-
             if($comprobacion==true ){
-
 
                 $sql = "INSERT INTO " . $this->tabla . " (titulo,genero,pais,ano,numPaginas) VALUES
                 ('".$Post['nuevoTitulo']."','".$Post['nuevoGenero']."','".$Post['nuevoPais']."',
                 '".(int)$Post['nuevoAno']."','".(int)$Post['nuevoPag']."')";
 
-
                 $stmt = $this->conection->prepare($sql);
 
                 $stmt->execute();
+                $ultimoIdLibro=$this->conection->lastInsertId();
+
+                $arrAutores=$Post['autores'];
+
+                foreach ($arrAutores as $autor){
+
+                  $this->insertarAutoresEscriben($ultimoIdLibro,$autor);
+                }
 
             }else{
                 echo "Debes rellenar todos los campos";
             }
 
+        }
+
+        //INSERTA EN LA TABLA ESCRIBEN EL IDLIBRO Y IDPERSONA
+        private function insertarAutoresEscriben($ultimoIdLibro,$autor){
+
+            $sql = "INSERT INTO ESCRIBEN (idLibro,idPersona) VALUES ($ultimoIdLibro,$autor)";
+
+            $stmt = $this->conection->prepare($sql);
+
+            $stmt->execute();
         }
 
 
@@ -231,14 +265,6 @@
                 " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
 
 
-//            $sql = "SELECT *  FROM " . $this->tabla ." WHERE
-//            IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
-//             " AND  TITULO LIKE '".$post['Titulo'].
-//             "' AND GENERO LIKE '".$post['Genero'].
-//             "' AND PAIS LIKE '".$post['Pais'].
-//             "' AND ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
-//             " AND NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
-           // $post['Autor']
             echo $sql;
             $stmt = $this->conection->prepare($sql);
 
@@ -261,7 +287,7 @@
         public function buscarColumnaAutores(){
 
             $sql = "SELECT * FROM AUTORES";
-            echo $sql;
+            //echo $sql;
             $stmt = $this->conection->prepare($sql);
 
             $stmt->execute();
