@@ -47,8 +47,7 @@
 
             $librosFiltrados['autor']=$this->objlibro->buscarColumnaAutores();
 
-
-           print_r($librosFiltrados['autor']);
+            print_r($librosFiltrados['autor']);
 
             return $librosFiltrados;
         }
@@ -61,6 +60,7 @@
            $_POST['edit'] = true;
 
          $libroEditado=  $this->objlibro->Confirmareditar($_POST);
+
          $libroEditado['autores'] =$this->objAutores->mostrarAutores();
           print_r( $libroEditado);
 
@@ -95,19 +95,20 @@
         public function confirmarAnadir(){
 
             $this->objlibro->insert($_POST);
-           // header("Location: http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros");
-        }
-        public function borrarLibro($libro){
 
-            print_r($libro);
+            header("Location: http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros");
+        }
+        public function borrarLibro($idLibro){
+
+            print_r($idLibro);
             $this->page_title="Borrar Libro";
             $this->view="borrarLibro";
 
-             return $this->objlibro->delete($libro);
+            //return $this->objlibro->delete($idLibro);
+             return $this->objlibro->mostrarLibroId($idLibro);
         }
 
         public function confirmarBorrado(){
-
 
             $this->page_title="Borrar Libro";
             $this->view="borrarLibro";

@@ -13,6 +13,7 @@ if(isset($arrDatos['datos']['autores'])) $autores =$arrDatos['datos']['autores']
 <input type="number" placeholder="Paginas" name="nuevoPag"><br>
 
  <label>AUTOR</label>   <br>
+<!--    Le pongo autores[] para que un libro pueda tener varios autores -->
     <select name="autores[]" multiple>
 
        <?php

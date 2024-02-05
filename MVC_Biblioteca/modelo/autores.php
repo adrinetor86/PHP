@@ -30,6 +30,8 @@ class Autores{
 
     }
 
+
+
     public function mostrarAutores(){
 
         $sql= "SELECT * FROM ".$this->tabla ." ORDER BY NOMBRE";

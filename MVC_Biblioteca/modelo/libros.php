@@ -32,6 +32,7 @@
 
             $libros=[];
 
+                    //Mientras que libro reciba datos se ejecuta el while
             while($libro=$stmt->fetch(PDO::FETCH_ASSOC)){
 
               $arrAutores= $this->aniadeAutores($libro);
@@ -42,6 +43,7 @@
                   $libro['idPersona'][]=$autor['idPersona'];
                   $libro['nombreCompleto'][]=$autor['nombreCompleto'];
               }
+            //  print_r($libro);
                 //Mete al array libros los datos de libro
             array_push($libros,$libro);
             }
@@ -54,7 +56,7 @@
         private function aniadeAutores($libro){
 
                 $autor=new Autores();
-
+        //Devuelve un array con los autores por id de libro
             return $autor->mostrarAutoresPorId($libro['idLibro']);
         }
 
@@ -67,7 +69,6 @@
         }
 
         public function mostrarLibroId($libro){
-
 
             $sql = "SELECT * FROM LIBROS,ESCRIBEN,AUTORES WHERE LIBROS.idLibro=? AND ESCRIBEN.idLibro = LIBROS.idLibro AND ESCRIBEN.idPersona = AUTORES.idPersona";
 
@@ -111,25 +112,34 @@
         }
 
 
-        public function delete($param){
+        public function confirmarDelete($idLibro){
 
-            $libro=$this->mostrarLibroId($param);
+            $this->borrarIdEscriben($idLibro);
 
-                return $libro;
-        }
-
-        public function confirmarDelete($libro){
-          //  print_r($libro);
             $sql = "DELETE  FROM " . $this->tabla . " WHERE idLibro= ?";
 
             $stmt = $this->conection->prepare($sql);
 
-            print_r($libro);
+         //  print_r($idLibro);
 
-            $stmt->execute([$libro]);
+            $stmt->execute([$idLibro]);
 
-            return $libro;
+
+            return $idLibro;
         }
+
+        //BORRA EL LIBRO DE LA TABLA ESCRIBEN
+        private function borrarIdEscriben($idLibro){
+
+            $sql = "DELETE  FROM ESCRIBEN WHERE idLibro= ?";
+
+            $stmt = $this->conection->prepare($sql);
+
+            //print_r($idLibro);
+
+            $stmt->execute([$idLibro]);
+        }
+
 
         public function edit($param){
 
@@ -169,6 +179,7 @@
                 $stmt = $this->conection->prepare($sql);
 
                 $stmt->execute();
+                //Recoge el ultimo id del ultimo libro insertado
                 $ultimoIdLibro=$this->conection->lastInsertId();
 
                 $arrAutores=$Post['autores'];
@@ -204,8 +215,6 @@
             }else{
                 $sql = "SELECT MIN(".$nombreColumna.") AS MinColumna FROM " . $this->tabla ;
             }
-
-
 
 
           //  echo "EL sql: ".$sql;

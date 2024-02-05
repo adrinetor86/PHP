@@ -97,6 +97,7 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
 
 
             echo "<p> AUTOR: </label>" ;
+                //   Pongo nombreCompleto porque habia creado un alias
              foreach ($libro['nombreCompleto'] as $autor) {
                  echo  $autor."</p>";
              }
