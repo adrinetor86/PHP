@@ -58,7 +58,7 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
         <label>Minimo</label><input type="number" name="MinPag" >
         <label>Maximo</label><input type="number" name="MaxPag" >
 
-        <label>Autor</label>  <select name="Autor">
+        <label>Autor</label> <select name="autores[]" multiple>
             <option value="" >Selecciona un Autor</option>
             <?php
             foreach ($autores as $autor) {
@@ -114,6 +114,7 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
 
 }else{
 
+    print_r($librosFiltrados);
    // print_r($librosFiltrados);
     foreach ($librosFiltrados as $libroFiltrado){
 
@@ -125,7 +126,17 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
             <?php echo "<p> PAIS: </label>". $libroFiltrado['pais']."</p>"?>
             <?php echo "<p>AÑO: </label>". $libroFiltrado['ano']."</p>"?>
             <?php echo "<p> NUM PAGINAS: </label>". $libroFiltrado['numPaginas']."</p>"?>
-            <?php echo "<p> AUTOR: </label>". $libroFiltrado['nombre'] .' '.$libroFiltrado['apellido']."</p>"?>
+
+            <?php
+
+                 echo "<p> AUTOR: </label>" ;
+                 //   Pongo nombreCompleto porque habia creado un alias
+                 foreach ($libroFiltrado['nombreCompleto'] as $autor) {
+                     echo  $autor."</p>";
+                 }
+            ?>
+
+
 
             <button> <a href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/editarLibro/<?php echo $libroFiltrado['idLibro']; ?>"> EDITAR</a></button>
 
@@ -135,6 +146,7 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
         <!--      echo $libro['titulo'];-->
 
         <?php
+
     }
 
 }

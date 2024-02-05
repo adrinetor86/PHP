@@ -47,7 +47,7 @@
 
             $librosFiltrados['autor']=$this->objlibro->buscarColumnaAutores();
 
-            print_r($librosFiltrados['autor']);
+          //  print_r($librosFiltrados['autor']);
 
             return $librosFiltrados;
         }

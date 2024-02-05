@@ -257,31 +257,72 @@
 
 
             // CON UNA CONDICION O ALGO VIENDO LA LONGITUD DEL ARRAY PODRIA SABER SI SE PASA MAS DE UN AUTOR
-            $post['Autor']=  (!empty($post['Autor'])) ? " AND AUTORES.IDPERSONA = '".$post['Autor'] ."'" : " AND AUTORES.IDPERSONA LIKE '%%'";
+            $post['Autor']=  (!empty($post['autores'])) ? " AND AUTORES.IDPERSONA = '".$post['autores'] ."'" : " AND AUTORES.IDPERSONA LIKE '%%'";
 
 
 
 
-            $sql = "SELECT *  FROM  LIBROS,AUTORES,ESCRIBEN WHERE 
-                                   
+//            $sql = "SELECT *  FROM  LIBROS,AUTORES,ESCRIBEN WHERE
+//
+//                 LIBROS.IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
+//                " AND  LIBROS.TITULO LIKE '".$post['Titulo'].
+//                "' AND LIBROS.GENERO LIKE '".$post['Genero'].
+//                "' AND LIBROS.PAIS LIKE '".$post['Pais'].
+//                "' AND LIBROS.ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
+//                " AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'].
+//                $post['Autor'].
+//                " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
+
+
+            $sql = "SELECT * FROM LIBROS WHERE 
                  LIBROS.IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
-                " AND  LIBROS.TITULO LIKE '".$post['Titulo'].
+                "  AND  LIBROS.TITULO LIKE '".$post['Titulo'].
                 "' AND LIBROS.GENERO LIKE '".$post['Genero'].
                 "' AND LIBROS.PAIS LIKE '".$post['Pais'].
                 "' AND LIBROS.ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
-                " AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'].
-                $post['Autor'].
-                " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
+                "  AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
 
 
-            echo $sql;
             $stmt = $this->conection->prepare($sql);
 
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            $stmt->execute();
+
+            $libros=[];
+
+            while($libro=$stmt->fetch(PDO::FETCH_ASSOC)) {
+
+
+                $arrAutores=$this->mostrarAutoresId($libro);
+                foreach ($arrAutores as $autor){
+
+                    $libro['idPersona'][]=$autor['idPersona'];
+                    $libro['nombreCompleto'][]=$autor['nombreCompleto'];
+                }
+                array_push($libros,$libro);
+            }
+           // echo $sql;
+
+         //  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+           return $libros;
 
         }
+
+
+        private function mostrarAutoresId($libro){
+                $objAutor= new Autores();
+
+                return $objAutor->mostrarAutoresPorId($libro['idLibro']);
+        }
+//    foreach ($arrAutores as $autor){
+//
+//        //Meto el [] para que en caso de que haya varios valores, no se sobreescriban
+//    $libro['idPersona'][]=$autor['idPersona'];
+//    $libro['nombreCompleto'][]=$autor['nombreCompleto'];
+//    }
+
 
         public function buscarColumna($columna){
 
