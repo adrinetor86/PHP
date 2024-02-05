@@ -114,7 +114,7 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
 
 }else{
 
-    print_r($librosFiltrados);
+    //print_r($librosFiltrados);
    // print_r($librosFiltrados);
     foreach ($librosFiltrados as $libroFiltrado){
 
@@ -131,9 +131,12 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
 
                  echo "<p> AUTOR: </label>" ;
                  //   Pongo nombreCompleto porque habia creado un alias
+
+     //  print_r($libroFiltrado);
                  foreach ($libroFiltrado['nombreCompleto'] as $autor) {
                      echo  $autor."</p>";
                  }
+              //  echo $libroFiltrado['nombreCompleto'];
             ?>
 
 
