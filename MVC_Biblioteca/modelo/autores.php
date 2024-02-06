@@ -45,6 +45,10 @@ class Autores{
 
 
     //MUESTRA LOS AUTORES POR EL ID DE LIBRO
+
+
+
+
     public function mostrarAutoresPorId($id){
 
         $sql= "SELECT escriben.idPersona , concat(nombre,' ',apellido) as nombreCompleto
@@ -52,6 +56,7 @@ class Autores{
 
         $stmt = $this->conection->prepare($sql);
 
+        echo $sql;
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

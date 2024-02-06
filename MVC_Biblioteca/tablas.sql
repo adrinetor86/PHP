@@ -114,3 +114,29 @@ INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Jacintock','terr
 INSERT INTO autores (nombre,apellido) VALUES ('Adrian','Jacek');
 
 insert INTO escriben VALUES(7,3);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$sql = "SELECT * FROM LIBROS,ESCRIBEN,AUTORES WHERE
+                 LIBROS.IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
+                "  AND  LIBROS.TITULO LIKE '".$post['Titulo'].
+                "' AND LIBROS.GENERO LIKE '".$post['Genero'].
+                "' AND LIBROS.PAIS LIKE '".$post['Pais'].
+                "' AND LIBROS.ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
+                "  AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
+
