@@ -37,7 +37,7 @@ curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
          //
          //  print_r($datos);
             if(is_array($valores)){
-                if(empty($valores)) {
+                if(!empty($valores)) {
 
 
                     echo "<td>" . $datos . "<td>";
@@ -46,7 +46,7 @@ curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
                     }
                     echo "<tr>";
                 }else{
-                    echo "<td>No hay nada jai</td>";
+                   echo "<td>No hay nada jai</td>";
                 }
             }else{
                 if(str_contains($valores,"swapi.dev/api/")){
