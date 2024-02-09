@@ -32,22 +32,21 @@ curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
             unset($arrPersonajes['url']);
 
         echo "<table border='1px'>";
+
         foreach ($arrPersonajes as $datos=>$valores){
 
-         //
-         //  print_r($datos);
             if(is_array($valores)){
+                echo "<td>" . $datos . "<td>";
                 if(!empty($valores)) {
 
-
-                    echo "<td>" . $datos . "<td>";
                     foreach ($valores as $valor) {
                         echo mostrarDatosUrl($objCurl, $valor) . "<br>";
                     }
                     echo "<tr>";
                 }else{
-                   echo "<td>No hay nada jai</td>";
+                   echo "No hay nada jai";
                 }
+                echo "<tr>";
             }else{
                 if(str_contains($valores,"swapi.dev/api/")){
                     echo "<td>".$datos."</td>";

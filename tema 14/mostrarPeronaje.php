@@ -26,12 +26,6 @@ do {
             ?>
                 <a href="infoPersonajes.php?personaje=<?php echo $personaje['url'] ?>"> <?php echo $personaje['name'] ?></a><br>
         <?php
-
-            // Mostrar información sobre el personaje
-//            echo 'Nombre: ' . $personaje['name'] . '<br>';
-//            echo 'Altura: ' . $personaje['height'] . '<br>';
-//            echo 'Peso: ' . $personaje['mass'] . '<br>';
-//            echo 'Año de nacimiento: ' . $personaje['birth_year'] . '<br>';
         }
         $consulta = $arrPersonajes["next"];
     }
