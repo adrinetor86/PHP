@@ -16,6 +16,8 @@
     $accionHandler=$propiedades['action'] ?? '';
     $parametrosHandler=$propiedades['parametros'] ?? '';
 
+
+
 //    echo "Controlador ". $propiedades['controller']."<br>";
 //    echo "Accion ".$propiedades['action']."<br>";
 //    echo "Parametros ".print_r($propiedades['parametros']);
