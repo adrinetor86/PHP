@@ -1,13 +1,17 @@
 <?php
 
+    include("template/cabecera.php");
 
-  // echo "buenas";
 
+   if(isset($_POST['filtrado-id']) && trim($_POST['filtrado-id'])!=''){
+       $url="http://localhost/2DAW/PHP/tema%2014/La_Casa_De_Papel/index.php/Personajes/".$_POST['filtrado-id'];
+
+   }else{
        $url="http://localhost/2DAW/PHP/tema%2014/La_Casa_De_Papel/index.php/Personajes";
+   }
 
     $objCurl = curl_init();
     curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
-
 
 
            curl_setopt($objCurl, CURLOPT_URL, $url);
@@ -25,28 +29,31 @@
 
                $arrPersonajes = json_decode($objJSON,true);
 
-               echo "<table border='1px'>";
+               echo "<table >";
+
+               //bucle que imprime las cabeceras
+               foreach ($arrPersonajes[0] as $personaje=> $valores2){
+                   echo "<th> $personaje</th>";
+                }
+
+                    echo "<tr>";
                foreach ($arrPersonajes as $personaje  => $valores2) {
 
 
                    //el => $valores2 de abajo muestra las cabeceras
-//                   foreach ($personaje as $valor => $valores2){
-//
-//                    echo $valor." ";
-//                       echo $valores2."<br>";
-//                   }
+                   foreach ($valores2 as $valor){
 
-                   echo "<br>";
+                    echo"<td>". $valor." </td>";
+
+                   }
+
+                   echo "<tr>";
                }
                echo "</table>";
            }
 
-
       curl_close($objCurl);
 
-
-        //return $arrDatosJSON;
-        // return (strpos($url,'films')) ? $arrDatosJSON['title'] : $arrDatosJSON['name'];
 
 
 

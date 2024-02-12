@@ -5,7 +5,6 @@ require_once ("Handler/handler.php");
 
     class Personajes{
 
-
         public $strTabla;
         public $connection;
 
@@ -21,17 +20,36 @@ require_once ("Handler/handler.php");
           $sql="SELECT * FROM ".$this->strTabla;
 
 
-          if(count($arrayParams)>0){
 
-              $sql.=" WHERE id=".$arrayParams[0];
+              if (count($arrayParams) > 0) {
 
-            //  echo $sql;
-          }
-            $stmt = $this->conection->prepare($sql);
-             $stmt->execute();
+                  if(!is_numeric($arrayParams)) {
+                  $sql .= " WHERE id=" . $arrayParams[0];
+
+
+                  //el nombre
+                  }else{
+                      $sql.=" WHERE nombre='" . $arrayParams[0]."%'";
+
+                  }
+
+              }
+              $stmt = $this->conection->prepare($sql);
+              $stmt->execute();
+
 
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+
+        public function busquedaPorValores($arrayParams){
+
+
+            $sql = " WHERE nombre='".$arrayParams[0]. "%%'";
+            echo $sql;
+       //echo $sql;
+            return $sql;
         }
 
 

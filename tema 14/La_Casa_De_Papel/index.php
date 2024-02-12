@@ -4,7 +4,7 @@ include ("Handler/handler.php");
 include ("Modelo/db.php");
 //header("Content-Type: application/json; charset=utf-8");
 header('Content-Type: application/json; charset=utf-8');
-$capturador=new Handler();
+    $capturador=new Handler();
 
 
   //  echo $capturador['tabla']."<br>";
@@ -14,9 +14,7 @@ $capturador=new Handler();
 
 
     $file="Modelo/".$handlerTabla.".php";
- //  print_r($handlerParametros);echo "<br>";
-   //echo $file."<br>";
-//print_r($handlerParametros);echo"<br>";
+
     if(file_exists($file)){
 
         include ($file);
@@ -32,7 +30,6 @@ $capturador=new Handler();
 
 
     echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
-
 
     }else{
       //  echo json_encode($error, JSON_UNESCAPED_UNICODE);
