@@ -1,6 +1,5 @@
 <?php
 
-
 include ("Handler/handler.php");
 include ("Modelo/db.php");
 //header("Content-Type: application/json; charset=utf-8");
@@ -15,8 +14,8 @@ $capturador=new Handler();
 
 
     $file="Modelo/".$handlerTabla.".php";
-
-    echo $file."<br>";
+ //  print_r($handlerParametros);echo "<br>";
+   //echo $file."<br>";
 //print_r($handlerParametros);echo"<br>";
     if(file_exists($file)){
 
@@ -27,14 +26,16 @@ $capturador=new Handler();
        $respuesta= $objTabla->getValores($handlerParametros);
 
 
-      //  echo API
+       // include ("controller/index.php");
+
+       // $controlador= new ControladorAPI();
+
 
     echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
-        // $strTablaHandler=$capturador->get;
+
+
     }else{
       //  echo json_encode($error, JSON_UNESCAPED_UNICODE);
     }
 
 
-//
-//$strTablaHandler="";

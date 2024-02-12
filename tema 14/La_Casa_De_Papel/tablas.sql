@@ -23,3 +23,4 @@ INSERT INTO personajes (nombre, apodo, genero, edad) VALUES
   ('Úrsula Corberó', 'Tokio', 'Femenino', 31),
   ('Enrique Arce', 'Arturo Román', 'Masculino', 48),
   ('Alba Flores', 'Nairobi', 'Femenino', 34);
+

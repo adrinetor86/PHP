@@ -17,7 +17,7 @@ require_once ("Handler/handler.php");
         }
 
         public function getValores($arrayParams) {
-            echo "hola"."<br>";
+          //  echo "hola"."<br>";
           $sql="SELECT * FROM ".$this->strTabla;
 
 
@@ -25,10 +25,11 @@ require_once ("Handler/handler.php");
 
               $sql.=" WHERE id=".$arrayParams[0];
 
-              echo $sql;
+            //  echo $sql;
           }
             $stmt = $this->conection->prepare($sql);
              $stmt->execute();
+
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
