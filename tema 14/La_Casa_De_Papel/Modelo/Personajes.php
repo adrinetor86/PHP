@@ -23,14 +23,12 @@ require_once ("Handler/handler.php");
 
               if (count($arrayParams) > 0) {
 
-                  if(!is_numeric($arrayParams)) {
+                  if(is_numeric($arrayParams[0])) {
                   $sql .= " WHERE id=" . $arrayParams[0];
-
 
                   //el nombre
                   }else{
-                      $sql.=" WHERE nombre='" . $arrayParams[0]."%'";
-
+                      $sql .=" WHERE nombre like'".$arrayParams[0]."%'";
                   }
 
               }
