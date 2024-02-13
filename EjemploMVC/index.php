@@ -16,9 +16,9 @@
 //    echo $propiedades['action']."<br>";
 //    echo print_r($propiedades['parametros']);
 
-    $controladorHandler=$propiedades['controller'];
-    $accionHandler=$propiedades['action'];
-    $parametrosHandler=$propiedades['parametros'];
+    $controladorHandler=$propiedades['controller']??'';
+    $accionHandler=$propiedades['action']??'';
+    $parametrosHandler=$propiedades['parametros']??'';
 
 
     if(!isset($_SESSION['login']) || $_SESSION['login']==false){

@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'model/Nota.php';
+    require_once 'model/nota.php';
 
     class ControladorNota{
         public string $page_title;
@@ -24,7 +24,6 @@
                 $_SESSION['numPagina']=$intPagina;
                 $_GET['siguiente'] = $this->noteObj->siguientePagina($intPagina);
 
-
                 return $this->noteObj->getNotes(($intPagina-1)*DEFAULT_NOTES);
 
 
@@ -34,6 +33,30 @@
 
             return $this->noteObj->getNotes($params['page']);
         }
+
+        public function listar(){
+
+
+            $url="http://localhost/2DAW/PHP/EjemploMVC_API/index.php/notas";
+            $objCurl = curl_init();
+            curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
+
+            curl_setopt($objCurl, CURLOPT_URL, $url);
+
+            $objJSON = curl_exec($objCurl);
+
+            $arrNotas = json_decode($objJSON,true);
+
+            curl_close($objCurl);
+       return $arrNotas;
+
+
+
+        }
+
+
+
+
 
         // devuelve una nota concreta
         public function edit($params){

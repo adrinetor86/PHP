@@ -4,8 +4,12 @@
 
 
    if(isset($_POST['filtrado-id']) && trim($_POST['filtrado-id'])!=''){
+
+
        $url="http://localhost/2DAW/PHP/tema%2014/La_Casa_De_Papel/index.php/Personajes/".$_POST['filtrado-id'];
 
+
+     //  $_POST['filtrado-id']
    }else{
        $url="http://localhost/2DAW/PHP/tema%2014/La_Casa_De_Papel/index.php/Personajes";
    }
@@ -39,8 +43,6 @@
                     echo "<tr>";
                foreach ($arrPersonajes as $personaje  => $valores2) {
 
-
-                   //el => $valores2 de abajo muestra las cabeceras
                    foreach ($valores2 as $valor){
 
                     echo"<td>". $valor." </td>";
@@ -53,7 +55,6 @@
            }
 
       curl_close($objCurl);
-
 
 
 

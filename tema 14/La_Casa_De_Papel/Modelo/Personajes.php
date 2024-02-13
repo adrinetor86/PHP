@@ -16,10 +16,8 @@ require_once ("Handler/handler.php");
         }
 
         public function getValores($arrayParams) {
-          //  echo "hola"."<br>";
+
           $sql="SELECT * FROM ".$this->strTabla;
-
-
 
               if (count($arrayParams) > 0) {
 
@@ -28,28 +26,23 @@ require_once ("Handler/handler.php");
 
                   //el nombre
                   }else{
-                      $sql .=" WHERE nombre like'".$arrayParams[0]."%'";
+
+                      if(str_contains($arrayParams[0],"%20")){
+                          $arrayParams[0]= str_replace("%20"," ",$arrayParams[0]);
+
+                          $sql .=" WHERE nombre ='".$arrayParams[0]."'";
+                      }else{
+                          $sql .=" WHERE nombre like '".$arrayParams[0]."%'";
+                      }
+
                   }
 
               }
               $stmt = $this->conection->prepare($sql);
               $stmt->execute();
 
-
-
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+              return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-
-
-        public function busquedaPorValores($arrayParams){
-
-
-            $sql = " WHERE nombre='".$arrayParams[0]. "%%'";
-            echo $sql;
-       //echo $sql;
-            return $sql;
-        }
-
 
     }
 
