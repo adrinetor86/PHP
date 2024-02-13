@@ -4,11 +4,21 @@
 
 
    if(isset($_POST['filtrado-id']) && trim($_POST['filtrado-id'])!=''){
+
+       echo $_POST['filtrado-id']."<br>";
+
+            if(str_contains($_POST['filtrado-id']," ")){
+
+                $_POST['filtrado-id']=str_replace(" ","%20", $_POST['filtrado-id']);
+       }
+
        $url="http://localhost/2DAW/PHP/tema%2014/La_Casa_De_Papel/index.php/Personajes/".$_POST['filtrado-id'];
 
    }else{
        $url="http://localhost/2DAW/PHP/tema%2014/La_Casa_De_Papel/index.php/Personajes";
    }
+
+  // $url=urlencode($url);
 
     $objCurl = curl_init();
     curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
