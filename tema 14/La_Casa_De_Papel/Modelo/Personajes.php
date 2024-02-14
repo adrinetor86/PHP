@@ -26,6 +26,7 @@ require_once ("Handler/handler.php");
 
                   //el nombre
                   }else{
+<<<<<<< HEAD
 
                       if(str_contains($arrayParams[0],"%20")){
                           $arrayParams[0]= str_replace("%20"," ",$arrayParams[0]);
@@ -35,6 +36,14 @@ require_once ("Handler/handler.php");
                           $sql .=" WHERE nombre like '".$arrayParams[0]."%'";
                       }
 
+=======
+                        if(str_contains($arrayParams[0],"%20")){
+                            $arrayParams[0]=str_replace("%20"," ",$arrayParams[0]);
+                 }else{
+
+                        }
+                      $sql .=" WHERE nombre like'%".$arrayParams[0]."%'";
+>>>>>>> 9c85f29d694e10f3eb1765199c0fa99d56958bd2
                   }
 
               }

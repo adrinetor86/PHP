@@ -22,8 +22,12 @@ class Handler{
 
 
         $arrParseUrl=parse_url($strUri);
+      //echo  $strUri=urldecode($strUri);
+
 
         if(is_array($arrParseUrl) && str_contains($strUri,".php")) {
+
+
 
             $strRuta = $arrParseUrl['path'];
 
