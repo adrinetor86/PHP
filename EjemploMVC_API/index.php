@@ -12,7 +12,7 @@ $handlerTabla=$capturador->getTabla();
 $handlerParametros=$capturador->getParams();
 
 $file="Modelo/".$handlerTabla.".php";
-
+//aaa
 if(file_exists($file)){
 
     include ($file);
