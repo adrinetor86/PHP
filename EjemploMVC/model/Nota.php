@@ -42,6 +42,7 @@ class Nota {
 		$stmt->execute();
 
 		return $stmt->fetchAll();
+
 	}
 
 	/* Get note by id */
@@ -52,6 +53,8 @@ class Nota {
 		$stmt->execute([$id]);
 
 		return $stmt->fetch();
+
+
 	}
 
 	/* Save note */

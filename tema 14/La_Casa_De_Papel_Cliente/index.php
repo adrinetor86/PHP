@@ -5,16 +5,13 @@
 
    if(isset($_POST['filtrado-id']) && trim($_POST['filtrado-id'])!=''){
 
-<<<<<<< HEAD
-=======
-       echo $_POST['filtrado-id']."<br>";
 
             if(str_contains($_POST['filtrado-id']," ")){
-
+                   // echo "bien";
                 $_POST['filtrado-id']=str_replace(" ","%20", $_POST['filtrado-id']);
        }
->>>>>>> 9c85f29d694e10f3eb1765199c0fa99d56958bd2
 
+                //echo  $_POST['filtrado-id'];
        $url="http://localhost/2DAW/PHP/tema%2014/La_Casa_De_Papel/index.php/Personajes/".$_POST['filtrado-id'];
 
 
