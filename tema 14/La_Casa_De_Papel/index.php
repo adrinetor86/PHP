@@ -6,7 +6,6 @@ include ("Modelo/db.php");
 header('Content-Type: application/json; charset=utf-8');
     $capturador=new Handler();
 
-
   //  echo $capturador['tabla']."<br>";
 
     $handlerTabla=$capturador->getTabla();
@@ -22,11 +21,6 @@ header('Content-Type: application/json; charset=utf-8');
         $objTabla= new $handlerTabla();
 
        $respuesta= $objTabla->getValores($handlerParametros);
-
-
-       // include ("controller/index.php");
-
-       // $controlador= new ControladorAPI();
 
 
     echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
