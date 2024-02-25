@@ -12,12 +12,12 @@ class Nota {
     }
 
 
-
     public function siguientePagina(int $intPagina=0): bool{
         $sql = "SELECT count(*) as cantidad FROM " . $this->table;
 
         $stmt = $this->conection->prepare($sql);
         $stmt->execute();
+
 
         $cantidad=$stmt->fetch()["cantidad"];
 
@@ -31,6 +31,8 @@ class Nota {
          else
             return false;
     }
+
+
 
 
 	/* Get all notes */

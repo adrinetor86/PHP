@@ -114,8 +114,6 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
 
 }else{
 
-    //print_r($librosFiltrados);
-   // print_r($librosFiltrados);
     foreach ($librosFiltrados as $libroFiltrado){
 
         ?>
@@ -153,3 +151,14 @@ if(!isset ($arrDatos['datos']['libroFiltrado'])){
     }
 
 }
+
+    if(isset($_GET['pagina'])&&$_GET['pagina'] >= 1 && $_GET['pagSiguiente']==true){
+        $prev =  $_GET['pagina'] + 1;
+        echo "<a href='http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros/$prev'>Siguiente</a>";
+
+    }
+    if(isset($_GET['pagina']) && $_GET['pagina']>1) {
+        $prev = $_GET['pagina'] - 1;
+        echo "<a href='http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/listarLibros/$prev'>Anterior</a>";
+    }
+

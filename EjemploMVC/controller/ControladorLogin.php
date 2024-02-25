@@ -35,7 +35,7 @@ class ControladorLogin{
 
                 $_SESSION['login'] = true;
                 //echo $_SESSION['login'];
-                header('Location: http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/list/1');
+                header('Location: http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/listar');
             } else {
 
                 $_SESSION['login'] = false;

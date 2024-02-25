@@ -27,10 +27,23 @@
         }
 
         public function listarLibros($params){
+
             $this->page_title="Listado Libros";
             $this-> view="listar";
 
-            $libros['libros']=$this->objlibro->mostrarLibros();
+
+              $intPagina=$params['page'] ?? 1;
+
+                if($intPagina==""){
+                    $intPagina=1;
+                }
+
+            $libros['paginasTotales']=$this->objlibro->siguientePagina($intPagina);
+
+             $_GET['pagina']=$intPagina;
+             $_GET['pagSiguiente']=$libros['paginasTotales'];
+
+            $libros['libros']=$this->objlibro->mostrarLibros($intPagina);
             $libros['genero']=$this->objlibro->buscarColumna("GENERO");
             $libros['pais']=$this->objlibro->buscarColumna("PAIS");
 
@@ -40,6 +53,9 @@
         }
 
         public function buscar(){
+
+
+
 
             $librosFiltrados['libroFiltrado']=$this->objlibro->buscarLibros($_POST);
             $librosFiltrados['genero']=$this->objlibro->buscarColumna("GENERO");
@@ -117,4 +133,9 @@
             return $this->objlibro->confirmarDelete($_POST['id']);
         }
 
+
+
+
    }
+
+

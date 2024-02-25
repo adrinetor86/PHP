@@ -7,11 +7,11 @@
 
         public static function render($arrDatos){
 
-//            print_r( $arrDatos['datos']['vista']);echo "<br>";
-//            print_r( $arrDatos['datos']['pageTitle']);
-//            print_r($arrDatos['datos']['libros']);
+         //   print_r($arrDatos["datos"]['vista']);
 
-            include ("vista/".$arrDatos['datos']['vista'].".php");
+            include ("vista/template/cabecera.php");
+            include("vista/template/nav.php");
+            include ("vista/".$arrDatos["datos"]['vista'].".php");
 
         }
 

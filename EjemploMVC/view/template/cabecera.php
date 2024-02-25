@@ -8,7 +8,7 @@
 	<div>
 		<header>
 			<div style="margin-top: 58px;">
-				<h1><?php echo $controller->page_title; ?></h1>
+				<h1><?php echo $dataToView['page-title']; ?></h1>
 
 
                 <?php if(!empty($parametrosHandler['page'])){

@@ -18,12 +18,43 @@
             $this-> objAutores=new Autores();
         }
 
-        public function mostrarLibros(){
+        public function siguientePagina($intPagina){
+
+                $sql = "SELECT count(*) as totalPaginas FROM " . $this->tabla;
+
+
+                $stmt = $this->conection->prepare($sql);
+                $stmt->execute();
+
+            $cantidad= $stmt->fetchAll(PDO::FETCH_ASSOC)[0]['totalPaginas'];
+
+            $_SESSION['maxPage']= ceil($cantidad/DEFAULT_NOTES);
+
+            if($cantidad>$intPagina*DEFAULT_NOTES){
+
+                return true;
+            }else{
+                return false;
+            }
+
+           //1-1 *3=0
+          //2-1 *3=3
+         //3-1 *3=6
+
+        }
+
+  //  $sql= "SELECT *  FROM ".$this->tabla." LIMIT $indiceLibros, $librosMostrados";
+
+
+        public function mostrarLibros($intPagina){
 
           //  $sql = 'SELECT * FROM ' . $this->tabla;
 
-         $sql  = ' SELECT idLibro,titulo,genero,pais,ano,numPaginas from libros';
+                        //PILLO EL NUMERO DE PAGINA, LE RESTO 1 Y LO MULTIPLICO POR EL NUMERO DE LIBROS QUE QUIERO MOSTRAR
+            $indiceLibro= (($intPagina-1)*DEFAULT_NOTES);
 
+         $sql  = ' SELECT idLibro,titulo,genero,pais,ano,numPaginas from libros LIMIT '. $indiceLibro.",". DEFAULT_NOTES ;
+                echo $sql;
             // echo $sql."<br>";
             $stmt = $this->conection->prepare($sql);
             $stmt->execute();

@@ -6,19 +6,17 @@
     require_once 'model/Handler.php';
     require_once 'model/View.php';
 
+require_once 'view/Vistas.php';
    session_start();
 
    $capturador=new Handler();
 
   $propiedades= $capturador->getProperties();
 
-//    echo $propiedades['controller']."<br>";
-//    echo $propiedades['action']."<br>";
-//    echo print_r($propiedades['parametros']);
 
-    $controladorHandler=$propiedades['controller'];
-    $accionHandler=$propiedades['action'];
-    $parametrosHandler=$propiedades['parametros'];
+    $controladorHandler=$propiedades['controller']??'';
+    $accionHandler=$propiedades['action']??'';
+    $parametrosHandler=$propiedades['parametros']??'';
 
 
     if(!isset($_SESSION['login']) || $_SESSION['login']==false){
@@ -60,13 +58,16 @@
 
     if (method_exists($controller,$accionHandler)) {
         $dataToView["data"] = $controller->{$accionHandler}($parametrosHandler);
+        $dataToView['vista']= $controller->view;
+        $dataToView['page-title']= $controller->page_title;
     } else {
-        $dataToView["data"] = $controller->list($parametrosHandler);
+        $dataToView["data"] = $controller->listar();
+        $dataToView['vista']= $controller->view;
+        $dataToView['page-title']= $controller->page_title;
     }
 
-
-        //View::render($controller,$dataToView['data']);
     /* Load views */
-    require_once 'view/template/cabecera.php';
-    require_once 'view/'.$controller->view.'.php';
-    require_once 'view/template/pie.php';
+
+    vista::cargarVista($dataToView);
+
+

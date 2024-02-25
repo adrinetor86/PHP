@@ -13,6 +13,30 @@
             $this->noteObj = new Nota();
         }
 
+       public function sacarDatosApi($url){
+            $objCurl = curl_init();
+            curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($objCurl, CURLOPT_URL, $url);
+            $objJSON = curl_exec($objCurl);
+            $arrDatosJSON = json_decode($objJSON, true);
+
+            if (curl_errno($objCurl)) {
+                echo 'Error en la solicitud cURL: ' . curl_error($objCurl);
+                return false;
+            } else {
+                return $arrDatosJSON;
+            }
+        }
+
+
+        public function listar(){
+
+             $datos = $this->sacarDatosApi("http://localhost/2DAW/PHP/EjemploMVC_API/api.php");
+
+            return $datos ;
+
+        }
+
         // devuelve todas las notas
         public function list($params) : array{
 

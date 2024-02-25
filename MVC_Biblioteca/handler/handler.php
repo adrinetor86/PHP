@@ -51,17 +51,17 @@ private array $arrProperties;
                 //PONGO 1
                 $this->arrProperties['parametros']['page'] = $auxParametros[0] ?? '';
 
-//                if(!empty($this->arrProperties['parametros']['page'])
-//                && isset($_SESSION['maxPage'])
-//                && $this->arrProperties['parametros']['page'] > $_SESSION['maxPage']) {
-//
-//                //echo "Paginas maximas :" .$_SESSION['maxPage'];
-//                $this->arrProperties['parametros']['page'] = $_SESSION['maxPage'];
-//
-//                }elseif ($this->arrProperties['parametros']['page'] < 1){
-//
-//                $this->arrProperties['parametros']['page']=1;
-//                }
+                if(!empty($this->arrProperties['parametros']['page'])
+                && isset($_SESSION['maxPage'])
+                && $this->arrProperties['parametros']['page'] > $_SESSION['maxPage']) {
+
+                //echo "Paginas maximas :" .$_SESSION['maxPage'];
+                $this->arrProperties['parametros']['page'] = $_SESSION['maxPage'];
+
+                }elseif ($this->arrProperties['parametros']['page'] < 1){
+
+                $this->arrProperties['parametros']['page']=1;
+                }
                     break;
                   case 'save':
                 case 'borrarLibro':

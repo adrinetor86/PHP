@@ -9,14 +9,9 @@
 
     <header>
 
-            <h1><?php echo $controladorObj->page_title; ?></h1>
+            <h1><?php echo $arrDatos["datos"]['pageTitle']; ?></h1>
 
 
-<!--            --><?php //if(!empty($parametrosHandler['page'])){
-//
-//                echo" <h4>Pagina:".$parametrosHandler['page']."</h4>";
-//
-//            }
             ?>
 
     </header>
