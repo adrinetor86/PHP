@@ -14,3 +14,5 @@ $arrFrases=["Hola","Adios","Buenos días","Buenas tardes","Buenas noches"];
 //Functionality::modifyreadFile("fichero.txt","Mi titulo nuevo");
 //LEE EL FICHERO
 Functionality::readFile("fichero.txt");
+
+

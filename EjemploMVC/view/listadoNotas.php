@@ -18,6 +18,8 @@
                         <a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/edit/<?php echo $note['id']; ?>" >Editar</a>
 
                         <a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/confirmDelete/<?php echo $note['id']; ?>">Eliminar</a>
+
+                        <a href="http://localhost/2DAW/PHP/EjemploMVC/index.php/ControladorNota/imprimir/<?php echo $note['id']; ?>">Imprimir</a>
                     </div>
                 </div>
                 <?php

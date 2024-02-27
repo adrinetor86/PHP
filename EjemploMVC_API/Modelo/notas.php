@@ -15,7 +15,7 @@ class Notas
     }
 
 
-    public function siguientePagina(int $intPagina = 0): bool
+    public function siguientePagina(int $intPagina=0): bool
     {
         $sql = "SELECT count(*) as cantidad FROM " . $this->table;
 
@@ -43,6 +43,26 @@ class Notas
 
         return $stmt->fetchAll();
     }
+
+    public function list($params) : array{
+
+
+        if(empty($params['page'])) {
+            $params['page']=1;
+
+        }
+        $intPagina=$params['page'];
+        $_GET['pagina']=$intPagina;
+        $_SESSION['numPagina']=$intPagina;
+          $_GET['siguiente'] = $this->siguientePagina($intPagina);
+
+        $datos = $this->getNotes(($params['page']-1)*DEFAULT_NOTES);
+
+        return $datos;
+
+    }
+
+
     /* Get all notes */
     public function getNotes($param): array
     {
@@ -65,6 +85,8 @@ class Notas
 
         return $stmt->fetch();
     }
+
+
 
     /* Save note */
     public function save($param)
@@ -119,6 +141,11 @@ class Notas
         }
 
     }
+
+
+
+
+
 
     /* Delete note by id */
     public function deleteNoteById($id)

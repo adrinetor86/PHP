@@ -3,13 +3,8 @@
 
 $url = $_REQUEST['personaje'];
 
-
-
-
-
 function sacarDatosApi($url)
 {
-
     $objCurl = curl_init();
     curl_setopt($objCurl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($objCurl, CURLOPT_URL, $url);
@@ -22,67 +17,64 @@ function sacarDatosApi($url)
     } else {
         return $arrDatosJSON;
     }
-
 }
+
+
+
 
 $arrInfoPersonaje = sacarDatosApi($url);
-//print_r($arrInfoPersonaje);
+
 unset($arrInfoPersonaje['url']);
-foreach ($arrInfoPersonaje as $clave=>$valor) {
 
-    echo $clave ." ";
+imprimirMultiplesAPIS($arrInfoPersonaje);
 
-    if(is_array($valor)){
 
-        foreach ($valor as $valor2) {
 
-            if(comprobarURL($valor2)){
-                $valor2 = sacarDatosApi($valor2);
-                echo $valor2['title']."<br>";
+//HABRA QUE TOCAR CLAVES DEPENDENDO DE LA API QUE SE USE
+function imprimirMultiplesAPIS($arrInfoPersonaje){
+
+    echo "<table border='1px'>";
+    foreach ($arrInfoPersonaje as $clave => $valor) {
+        if (!empty($valor)) {
+
+            if (is_array($valor)) {
+                echo "<td>" . $clave . "</td>";
+                echo "<td>";
+                foreach ($valor as $valor2) {
+                    $datosApi = sacarDatosApi($valor2);
+
+                    if (array_key_exists('title', $datosApi)) {
+                        echo $datosApi['title'] . "<br>";
+                    } else {
+                        echo $datosApi['name'] . "<br>";
+                    }
+                }
+                echo "</tr>";
+
+            } else {
+                echo "<td>" . $clave . "</td>";
+                if (comprobarURL($valor)) {
+                    $valor = sacarDatosApi($valor);
+                    echo "<td>" . $valor['name'] . "</td><tr>";
+                } else {
+                    echo "<td>" . $valor . "</td><tr>";
+                }
             }
-
+        } else {
+            echo "<td>" . $clave . "</td>";
+            echo "<td> No hay datos</td><tr>";
         }
-
-    }else{
-
-        if(is_array($valor)) {
-            foreach ($valor as $valor2) {
-                echo $valor2 . "<br>";
-
-            }
-
-            if(comprobarURL($valor2)){
-                $valor2 = sacarDatosApi($valor2);
-                echo $valor2['name']."<br>";
-            }
-        }else{
-            if(comprobarURL($valor)){
-                $valor2 = sacarDatosApi($valor);
-                echo $valor2['name']."<br>";
-            }else{
-                echo $valor . "<br>";
-            }
-
-
-        }
-
     }
-
+    echo "</table>";
 }
 
-
-function recogerNameoFilm(){
-
-}
-
-function comprobarURL($strParametro):string | null {
+function comprobarURL($strParametro){
     if (str_contains($strParametro, "https://")) {
 
-        return str_contains($strParametro, "films") ? "title" : "name";
+       return true;
 
-
-    }else{
-    return null;
+    } else {
+        return null;
     }
 }
 

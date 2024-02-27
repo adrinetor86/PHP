@@ -241,7 +241,6 @@ abstract class Functionality
     public static function writeFileArr(string $strFilePath, array $strContent): void
     {
 
-
         $fileFlow = fopen($strFilePath, 'ab+');
 
         foreach ($strContent as $frase){
@@ -330,4 +329,57 @@ abstract class Functionality
         }
     }
 
+
+   public static function imprimirMultiplesAPIS($arrInfoPersonaje)
+   {
+
+       echo "<table border='1px'>";
+
+       foreach ($arrInfoPersonaje as $clave => $valor) {
+
+           if (!empty($valor)) {
+               print_r($valor);
+               if (is_array($valor)) {
+                   echo "<td>" . $clave . "</td>";
+                   echo "<td>";
+                   print_r($valor);
+                   foreach ($valor as $valor2) {
+                       print_r($valor2);
+                       $datosApi = Functionality::getJSON($valor2);
+
+                       if (array_key_exists('title', $datosApi)) {
+                           echo $datosApi['title'] . "<br>";
+                       } else {
+                           echo $datosApi['name'] . "<br>";
+                       }
+                   }
+                   echo "</tr>";
+
+               } else {
+                   echo "<td>" . $clave . "</td>";
+                   if (Functionality::comprobarURL($valor)) {
+                       $valor = Functionality::getJSON($valor);
+                       echo "<td>" . $valor['name'] . "</td><tr>";
+                   } else {
+                       echo "<td>" . $valor . "</td><tr>";
+                   }
+               }
+           } else {
+               echo "<td>" . $clave . "</td>";
+               echo "<td> No hay datos</td><tr>";
+           }
+       }
+       echo "</table>";
+
+     }
+
+     public static function comprobarURL($strParametro){
+         if (str_contains($strParametro, "https://")) {
+
+             return true;
+
+         } else {
+             return null;
+         }
+     }
 }

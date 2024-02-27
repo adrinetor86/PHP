@@ -37,11 +37,34 @@ class Handler
 
             $this->arrProperties['tabla'] = $arrParams[1] ?? '';
 
+            $this->arrProperties['action'] = $arrParams[2] ?? '';
             //COGE A PARTIR DE LA UBICACION 2 DEL ARRPARAMS EN ADELANTE
-            $this->arrProperties['parametros'] = array_slice($arrParams, 2);
+            $auxParametros= array_slice($arrParams, 3);
+            $this->arrProperties['parametros']=[];
             //Pasa un trozo del array
 
         }
+        if ($auxParametros !== []) {
+            switch ($this->arrProperties["action"]) {
+
+                case 'list':
+                case 'siguientePagina':
+
+                    $this->arrProperties['parametros']['page'] = $auxParametros[0] ?? '';
+                    if (!empty($this->arrProperties['parametros']['page'])
+                        && isset($_SESSION['maxPage'])
+                        && $this->arrProperties['parametros']['page'] > $_SESSION['maxPage']) {
+
+                        echo "Paginas maximas :" . $_SESSION['maxPage'];
+                        $this->arrProperties['parametros']['page'] = $_SESSION['maxPage'];
+                    } elseif ($this->arrProperties['parametros']['page'] < 1) {
+                        $this->arrProperties['parametros']['page'] = 1;
+                    }
+                    break;
+              }
+            }
+
+
     }
 
     public function getTabla()
@@ -49,8 +72,13 @@ class Handler
         return $this->arrProperties['tabla'] ?? '';
     }
 
+    public function getAction()
+    {
+        return $this->arrProperties['action'] ?? '';
+    }
     public function getParams()
     {
+        echo "&&&&&&&&&&&&&".$this->arrProperties['parametros'];
         return $this->arrProperties['parametros'] ?? '';
     }
 

@@ -54,22 +54,24 @@ class Nota {
 		$stmt = $this->conection->prepare($sql);
 		$stmt->execute([$id]);
 
-		return $stmt->fetch();
+		return $stmt->fetchAll();
 
 
 	}
 
 	/* Save note */
 	public function save($param){
-
-        echo "el param "; print_r($param);
+    //Le he pasado un POST
+      //echo "el param "; print_r($param);
 		/* Set default values */
 		$titulo = $contenido = "";
 
 		/* Check if exists */
 		$exists = false;
+        //Comprueba si esta seteado el id y si no esta vacio
 		if(isset($param["id"]) and $param["id"] !=''){
 			$actualNote = $this->getNoteById($param["id"]);
+            //En caso de que exista la nota con ese id
 			if(isset($actualNote["id"])){
 			$exists = true;
 				/* Actual values */
@@ -80,7 +82,7 @@ class Nota {
 			}
 		}
 
-		/* Received values */
+		/* datos recibidos */
 		if(isset($param["titulo"])  and
            isset($param["contenido"]) ){
 
@@ -89,7 +91,7 @@ class Nota {
             $contenido = $param["contenido"];
         }
 
-		/* Database operations */
+		/* En caso de que ya existieran datos hara un update, en caso contrario un insert */
 		if($exists){
 			$sql = "UPDATE ".$this->table. " SET titulo=?, contenido=? WHERE id=?";
             echo $sql;
@@ -106,7 +108,7 @@ class Nota {
                 return $id;
             }
 
-	    echo "no se pudo";
+
 		}	
 
 	}

@@ -10,7 +10,6 @@ if(isset($dataToView["data"]["contenido"])) $contenido = $dataToView["data"]["co
 	<?php
 
 
-
 	    if(isset($_GET["response"]) and $_GET["response"] === true) {
 
             if ( isset($_REQUEST['id'] ) && $_REQUEST['id'] != '') {

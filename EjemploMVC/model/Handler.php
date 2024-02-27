@@ -64,6 +64,7 @@ class Handler{
                         case 'save':
                         case 'edit':
                         case 'confirmDelete':
+                        case 'imprimir':
                             $this->arrProperties['parametros']['id'] = $auxParametros[0] ?? '';
                             break;
                     }
