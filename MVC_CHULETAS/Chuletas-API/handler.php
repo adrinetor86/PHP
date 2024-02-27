@@ -8,6 +8,7 @@ class Handler{
         $this->valoresUrl();
     }
 
+
     private function valoresUrl(){
 
         $strDominio="http://".$_SERVER['SERVER_NAME'];

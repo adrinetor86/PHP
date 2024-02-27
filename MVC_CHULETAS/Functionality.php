@@ -318,4 +318,16 @@ abstract class Functionality
         fclose($fileFlow);
     }
 
+        public static function deleteFile($filePath) {
+        if (file_exists($filePath)) {
+            if(unlink($filePath)) {
+                return "File deleted successfully";
+            } else {
+                return "Failed to delete the file";
+            }
+        } else {
+            return "File does not exist";
+        }
+    }
+
 }

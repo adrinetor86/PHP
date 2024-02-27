@@ -3,6 +3,7 @@ database lacasadepapel;
 
 
          drop table personajes;
+        drop table imagenes_personajes;
 
 CREATE TABLE imagenes_personajes(
     id     int AUTO_INCREMENT Primary key,
@@ -16,9 +17,9 @@ CREATE TABLE personajes(
    apodo  varchar(30),
    genero varchar(20),
    edad   int,
-   imagenId int
+   imagenId int,
 
-foreign key (imagenId) references imagenes_personajes(id);
+foreign key (imagenId) references imagenes_personajes(id)
 );
 
 INSERT INTO imagenes_personajes (imagen) VALUES
