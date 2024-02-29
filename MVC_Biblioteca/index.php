@@ -1,6 +1,6 @@
 <?php
 
-        require_once "controller/ControladorLogin.php";
+require_once "controller/ControladorLogin.php";
         require_once "handler/handler.php";
         require_once "vista/Vista.php";
         require_once "config/config.php";

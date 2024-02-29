@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-    require_once 'config/config.php';
+require_once 'config/config.php';
     require_once 'model/Db.php';
     require_once 'controller/ControladorLogin.php';
     require_once 'model/Handler.php';

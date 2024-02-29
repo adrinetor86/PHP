@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'model/nota.php';
+require_once 'model/nota.php';
     require_once '../MVC_CHULETAS/Functionality.php';
 
     class ControladorNota{
