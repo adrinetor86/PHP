@@ -23,7 +23,6 @@
         // Si el valor no está vacío, agregar la condición a la consulta
         if (!empty($valor)) {
 
-
             if ($campo == 'titulo') {
                 $condiciones[] = "libros.$campo LIKE $campo";
 

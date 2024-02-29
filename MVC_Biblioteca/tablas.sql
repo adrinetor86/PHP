@@ -23,6 +23,9 @@ CREATE TABLE libros (
  numPaginas   integer(4)) ;
 
 
+
+
+
 INSERT INTO autores (nombre,apellido) VALUES ('Elvira','Lindo');
 INSERT INTO autores (nombre,apellido) VALUES ('Marget','Weis');
 INSERT INTO autores (nombre,apellido) VALUES ('Roald','Dahl');
@@ -37,6 +40,24 @@ create table escriben(
  primary key(idLibro,idPersona),
  constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
  constraint fk_escbiben_autores foreign key (idPersona) references autores(idPersona)) ;
+
+
+
+create table relacionSaga(
+  idLibro integer(3),
+  idSaga integer(3),
+  primary key(idLibro,idSaga),
+  constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
+  constraint fk_escbiben_sagas foreign key (idSaga) references sagas(idSaga)
+  );
+
+CREATE TABLE sagas(
+    idSaga     int AUTO_INCREMENT primary key,
+    nombreSaga VARCHAR(40),
+
+);
+
+
 
 -- INSERT INTO usuario (email,contrasena) VALUES ('adrinetor81@gmail.com','1234');
 
@@ -61,11 +82,11 @@ TRUNCATE autores;
 TRUNCATE libros;
 
 create table escriben(
-                         idLibro integer(3),
-                         idPersona integer(3),
-                         primary key(idLibro,idPersona),
-                         constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
-                         constraint fk_escbiben_autores foreign key (idPersona) references autores(idPersona)) ;
+  idLibro integer(3),
+  idPersona integer(3),
+  primary key(idLibro,idPersona),
+  constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
+  constraint fk_escbiben_autores foreign key (idPersona) references autores(idPersona)) ;
 
 
 
@@ -85,7 +106,6 @@ INSERT INTO autores (nombre,apellido) VALUES ('John Ronald Reuel','Tolkien');
 INSERT INTO autores (nombre,apellido) VALUES ('Joanne','Rowling');
 
 
-
 insert INTO escriben VALUES(1,1);
 insert INTO escriben VALUES(2,2);
 insert INTO escriben VALUES(3,3);
@@ -95,7 +115,9 @@ insert INTO escriben VALUES(6,6);
 
 
 
-
+INSERT INTO sagas (nombreSaga) VALUES ('Señor de los Anillos');
+INSERT INTO sagas (nombreSaga) VALUES ('Geronimo Stilton');
+INSERT INTO sagas (nombreSaga) VALUES ('Saw');
 
 UPDATE LIBROS,AUTORES,ESCRIBEN
 SET LIBROS.titulo='Manolito Gafotas',
@@ -124,7 +146,9 @@ insert INTO escriben VALUES(7,3);
 
 
 
-
+select * from libros,autores,escriben,relacionsaga,sagas
+WHERE libros.idLibro = escriben.idLibro and escriben.idPersona= autores.idPersona
+  and sagas.idSaga = relacionsaga.idSaga and relacionsaga.idLibro =libros.idLibro
 
 
 

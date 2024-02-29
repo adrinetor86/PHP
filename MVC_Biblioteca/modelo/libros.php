@@ -120,24 +120,27 @@
             $ano = $libro['ano'];
             $paginas = $libro['numPaginas'];
             $idPersona =$libro['Autor'];
-
-           // print_r($libro);
+            $idSaga=$libro['Saga'];
+         print_r($libro);
             echo "PAGINAS: " . $paginas;
 
-            $sql= "UPDATE LIBROS,AUTORES,ESCRIBEN
+            $sql= "UPDATE LIBROS,AUTORES,ESCRIBEN,RELACIONSAGA,SAGAS
             SET LIBROS.titulo=?,
             LIBROS.genero=?,
             LIBROS.pais=?,
             LIBROS.ano=?,
             LIBROS.numPaginas=?,
-            ESCRIBEN.idPersona=?
+            ESCRIBEN.idPersona=?,
+            RelacionSaga.iSaga=?
             WHERE LIBROS.idLibro=?
-            AND ESCRIBEN.idLibro=LIBROS.idLibro AND ESCRIBEN.idPersona=AUTORES.idPersona";
+            AND ESCRIBEN.idLibro=LIBROS.idLibro AND ESCRIBEN.idPersona=AUTORES.idPersona
+            AND RELACIONSAGA.iLibro=LIBROS.idLibro AND RELACIONSAGA.iSaga=SAGAS.idSaga";
 
 
+                echo $sql;
            $stmt = $this->conection->prepare($sql);
 
-           $stmt->execute([$titulo, $genero, $pais, $ano, $paginas,$idPersona,$idLibro]);
+           $stmt->execute([$titulo, $genero, $pais, $ano, $paginas,$idPersona,$idSaga,$idLibro]);
 
             return $libro;
         }
@@ -176,6 +179,7 @@
 
             $libro = $this->mostrarLibroId($param);
             $libro['autores'] =$this->objAutores->mostrarAutores();
+            $libro['sagas'] =$this->mostrarSagas();
             print_r($libro);
             return $libro;
 
@@ -215,6 +219,8 @@
 
                 $arrAutores=$Post['autores'];
 
+
+                // AUTOR TIENE EL VALOR DEL ID
                 foreach ($arrAutores as $autor){
 
                   $this->insertarAutoresEscriben($ultimoIdLibro,$autor);
@@ -321,16 +327,16 @@
 //                " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
 
 
-            $sql = "SELECT * FROM LIBROS WHERE 
+            $sql = "SELECT * FROM LIBROS,ESCRIBEN,AUTORES WHERE 
                  LIBROS.IDLIBRO BETWEEN ".$post['IdMin']." AND ".$post['IdMax'].
                 "  AND LIBROS.TITULO LIKE '".$post['Titulo'].
                 "' AND LIBROS.GENERO LIKE '".$post['Genero'].
                 "' AND LIBROS.PAIS LIKE '".$post['Pais'].
                 "' AND LIBROS.ANO BETWEEN ".$post['AnoMin']." AND ".$post['AnoMax'].
-                "  AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'];
+                "  AND LIBROS.NUMPAGINAS BETWEEN ".$post['MinPag']." AND ".$post['MaxPag'].
 
-//                " AND (".$post['autores'].')'.
-//                " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
+                " AND (".$post['autores'].')'.
+                " AND ESCRIBEN.IDLIBRO = LIBROS.IDLIBRO AND ESCRIBEN.IDPERSONA=AUTORES.IDPERSONA";
 
 
         //echo $sql;
@@ -344,21 +350,36 @@
 
                 $arrAutores=$this->mostrarAutoresId($libro);
 
-                    echo "ARR AUTORES:<BR>";
-                      print_r($arrAutores);
-echo "<br>****";print_r($libro);echo "****<br>";unset($libro['idPersona']);
-                foreach ($arrAutores as $autor){
-                    $libro['idPersona'][]=$autor['idPersona'];
-                    $libro['nombreCompleto'][]=$autor['nombreCompleto'];
-                }
-echo "<br>****";print_r($libro);echo "****<br>";
+                  //  echo "ARR AUTORES:<BR>";
 
+                echo "<br>";
+//echo "<br>****";print_r($libro);echo "****<br>";
+   unset($libro['idPersona']);
+
+
+
+                foreach ($arrAutores as $autor){
+
+                        $libro['idPersona'][]=$autor['idPersona'];
+                        $libro['nombreCompleto'][]=$autor['nombreCompleto'];
+
+                }
+                $i++;
+//                if(count($libro['nombreCompleto'])>1){
+//                    echo "ENTRO";
+//                    $libros[0]=$libro;
+//                }else{
 
                     array_push($libros,$libro);
 
-                $i++;
+//echo "<br>****";print_r($libro);echo "****<br>";
+//                echo "<br>LIBRO<br>";
+//                print_r($libro);
 
             }
+            echo "<br>LIBROS<br>";
+
+            print_r($libros);
          // print_r($libros);
            // echo $sql;
 
@@ -398,6 +419,45 @@ echo "<br>****";print_r($libro);echo "****<br>";
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
+
+
+        //PRUEBAS SAGAS
+
+    public function mostrarSagas(){
+
+        $sql = "SELECT * FROM sagas ";
+
+        $stmt = $this->conection->prepare($sql);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+    public function buscarIDSaga($nombreSaga){
+
+        $sql = "SELECT idSaga FROM sagas where nombreSaga='".$nombreSaga."'";
+        //echo $sql;
+        $stmt = $this->conection->prepare($sql);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function insertarIDRelSaga($idLibro,$idSaga){
+
+            $sql = "INSERT INTO relacionSaga  VALUES ($idLibro,$idSaga)";
+            $stmt = $this->conection->prepare($sql);
+            $stmt->execute();
+    }
+
+    public function insertarSaga($idSaga){
+
+            $sql = "INSERT INTO sagas (nombreSaga) VALUES ('$idSaga')";
+    echo $sql;
+       // INSERT INTO sagas (nombreSaga) VALUES ('Geronimo Stilton');
+            $stmt = $this->conection->prepare($sql);
+            $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
     }

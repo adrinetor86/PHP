@@ -9,6 +9,9 @@ if(isset($arrDatos['datos']['numPaginas'])) $paginas = $arrDatos['datos']['numPa
 if(isset($arrDatos['datos']['nombre'])) $nombre = $arrDatos['datos']['nombre'];
 if(isset($arrDatos['datos']['apellido'])) $apellido = $arrDatos['datos']['apellido'];
 if(isset($arrDatos['datos']['autores'])) $autores = $arrDatos['datos']['autores'];
+
+
+if(isset($arrDatos['datos']['sagas'])) $Sagas = $arrDatos['datos']['sagas'];
 //echo "PRUEBA TITULO: ".$titulo;
 //print_r($arrDatos['datos'])
     ?>
@@ -55,6 +58,19 @@ if(isset($arrDatos['datos']['autores'])) $autores = $arrDatos['datos']['autores'
 
                 }
 
+                ?>
+            </select>
+
+            <select name="Saga">
+                <?php
+
+
+                foreach ($Sagas as $saga){
+                   ?>
+
+                    <option value="<?php echo $saga['idSaga']?>"><?php echo $saga['nombreSaga']?></option>
+                <?php
+                };
                 ?>
             </select>
 

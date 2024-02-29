@@ -17,7 +17,6 @@
     $parametrosHandler=$propiedades['parametros'] ?? '';
 
 
-
 //    echo "Controlador ". $propiedades['controller']."<br>";
 //    echo "Accion ".$propiedades['action']."<br>";
 //    echo "Parametros ".print_r($propiedades['parametros']);
@@ -73,9 +72,10 @@
         $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle();
     }else{
         echo "NO EXISTE ESE METODO";
+        $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
         $arrDatos["datos"]['vista']= $controladorObj->getView();
         $arrDatos["datos"]['pageTitle']= $controladorObj->getPageTitle();
-        $arrDatos["datos"] = $controladorObj->listarLibros($parametrosHandler);
+
     }
 
 //    include ("vista/template/cabecera.php");

@@ -33,6 +33,8 @@
         //Imprime la nota en un fichero
         public function imprimir($params){
             $notaImprimir=  $this->noteObj->getNoteById($params['id']);
+
+
             foreach ($notaImprimir as $nota){
                 $imprimirNota['id']="ID: ".$nota['id'];
                 $imprimirNota['titulo']="TITULO: ".$nota['titulo'];

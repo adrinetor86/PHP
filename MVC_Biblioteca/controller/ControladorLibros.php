@@ -133,7 +133,13 @@
             return $this->objlibro->confirmarDelete($_POST['id']);
         }
 
+        public function anadirSaga(){
 
+                $this->page_title="Añadir Saga";
+                $this->view="anadirSaga";
+            $this->objlibro->insertarSaga($_POST['Saga']);
+
+        }
 
 
    }

@@ -7,7 +7,7 @@
 
         public static function render($arrDatos){
 
-         //   print_r($arrDatos["datos"]['vista']);
+      print_r($arrDatos["datos"]);
 
             include ("vista/template/cabecera.php");
             include("vista/template/nav.php");
