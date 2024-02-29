@@ -6,6 +6,7 @@ if(isset($arrDatos['datos']['genero'])) $generos=$arrDatos['datos']['genero'];
 if(isset($arrDatos['datos']['pais'])) $paises=$arrDatos['datos']['pais'];
 if(isset($arrDatos['datos']['autor'])) $autores=$arrDatos['datos']['autor'];
 if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['datos']['libroFiltrado'];
+if(isset ($arrDatos['datos']['filtradoSaga'])) $filtradoSaga=$arrDatos['datos']['filtradoSaga'];
   //  print_r($librosFiltrados);
     //print_r($arrDatos['datos']);
 
@@ -70,6 +71,11 @@ if(isset ($arrDatos['datos']['libroFiltrado'])) $librosFiltrados=$arrDatos['dato
         <input type="submit" value="Buscar">
     </div>
 </form>
+<form action="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/ordenarSaga" method="post">
+    <input type="submit" value="Ordenar Por Coleccion">
+</form>
+
+
     <a  href="http://localhost/2DAW/PHP/MVC_Biblioteca/index.php/ControladorLibros/anadirLibro"><button>Insertar Libro</button></a>
 <?php
 

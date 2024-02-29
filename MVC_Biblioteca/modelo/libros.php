@@ -124,7 +124,7 @@
          print_r($libro);
             echo "PAGINAS: " . $paginas;
 
-            $sql= "UPDATE LIBROS,AUTORES,ESCRIBEN,RELACIONSAGA,SAGAS
+            $sql= "UPDATE LIBROS,AUTORES,ESCRIBEN,SAGAS
             SET LIBROS.titulo=?,
             LIBROS.genero=?,
             LIBROS.pais=?,
@@ -133,8 +133,7 @@
             ESCRIBEN.idPersona=?,
             RelacionSaga.iSaga=?
             WHERE LIBROS.idLibro=?
-            AND ESCRIBEN.idLibro=LIBROS.idLibro AND ESCRIBEN.idPersona=AUTORES.idPersona
-            AND RELACIONSAGA.iLibro=LIBROS.idLibro AND RELACIONSAGA.iSaga=SAGAS.idSaga";
+            AND ESCRIBEN.idLibro=LIBROS.idLibro AND ESCRIBEN.idPersona=AUTORES.idPersona";
 
 
                 echo $sql;
@@ -425,14 +424,49 @@
 
     public function mostrarSagas(){
 
-        $sql = "SELECT * FROM sagas ";
+        $sql = "SELECT distinct nombreSaga FROM sagas ";
 
         $stmt = $this->conection->prepare($sql);
 
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $libros=[];
+        while($saga=$stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "*****";
+            //    print_r($saga);
+
+            $arrSagasLibros = $this->mostrarLibrosSagas($saga['nombreSaga']);
+
+            foreach ($arrSagasLibros as $libro) {
+                $saga['idLibro'][] = $libro['idLibro'];
+                $saga['titulo'][] = $libro['titulo'];
+
+            };
+
+
+
+            array_push($libros, $saga);
+        }
+
+
+
+
+        return $libros;
+
+      //  return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
+    public function mostrarLibrosSagas($nombreSaga){
+
+        $sql = "SELECT * FROM libros,sagas WHERE libros.idLibro=sagas.idSaga and sagas.nombreSaga='".$nombreSaga."'";
+       echo $sql;
+        $stmt = $this->conection->prepare($sql);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function buscarIDSaga($nombreSaga){
 
         $sql = "SELECT idSaga FROM sagas where nombreSaga='".$nombreSaga."'";
@@ -452,7 +486,7 @@
     public function insertarSaga($idSaga){
 
             $sql = "INSERT INTO sagas (nombreSaga) VALUES ('$idSaga')";
-    echo $sql;
+    //echo $sql;
        // INSERT INTO sagas (nombreSaga) VALUES ('Geronimo Stilton');
             $stmt = $this->conection->prepare($sql);
             $stmt->execute();
@@ -460,4 +494,21 @@
     }
 
 
+    public function listarSagas(){
+
+        $sql = "SELECT * FROM sagas order by idSaga";
+        $stmt = $this->conection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function listarLibrosSagas()
+    {
+
+        $sql = "SELECT * FROM libros order by idSaga";
+        $stmt = $this->conection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        }
     }

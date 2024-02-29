@@ -20,7 +20,11 @@ CREATE TABLE libros (
  genero	VARCHAR(15),
  pais	VARCHAR(10),
  ano 	integer(4),
- numPaginas   integer(4)) ;
+ numPaginas   integer(4)
+ idSaga integer(3)
+
+ foreign key (idSaga) references sagas(idSaga));
+
 
 
 
@@ -42,14 +46,14 @@ create table escriben(
  constraint fk_escbiben_autores foreign key (idPersona) references autores(idPersona)) ;
 
 
-
-create table relacionSaga(
-  idLibro integer(3),
-  idSaga integer(3),
-  primary key(idLibro,idSaga),
-  constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
-  constraint fk_escbiben_sagas foreign key (idSaga) references sagas(idSaga)
-  );
+--
+-- create table relacionSaga(
+--   idLibro integer(3),
+--   idSaga integer(3),
+--   primary key(idLibro,idSaga),
+--   constraint fk_escbiben_libros foreign key (idLibro) references libros(idLibro),
+--   constraint fk_escbiben_sagas foreign key (idSaga) references sagas(idSaga)
+--   );
 
 CREATE TABLE sagas(
     idSaga     int AUTO_INCREMENT primary key,

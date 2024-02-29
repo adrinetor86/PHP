@@ -55,8 +55,6 @@
         public function buscar(){
 
 
-
-
             $librosFiltrados['libroFiltrado']=$this->objlibro->buscarLibros($_POST);
             $librosFiltrados['genero']=$this->objlibro->buscarColumna("GENERO");
             $librosFiltrados['pais']=$this->objlibro->buscarColumna("PAIS");
@@ -138,6 +136,24 @@
                 $this->page_title="Añadir Saga";
                 $this->view="anadirSaga";
             $this->objlibro->insertarSaga($_POST['Saga']);
+
+        }
+
+
+
+
+        public function ordenarSaga(){
+
+                $this->page_title="Ordenados por Saga";
+                $this-> view="ordenarSaga";
+
+
+//            $this->objlibro->listarLibrosSagas();
+//            $this->objlibro->listarSagas();
+//             $sagas['sagas']=$this->objlibro->mostrarSagas();
+          //  echo "####################<br><br>";
+
+            return ['books' => $this->objlibro->listarLibrosSagas(),  'sagas' => $this->objlibro->listarSagas()];
 
         }
 
