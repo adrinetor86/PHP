@@ -85,6 +85,8 @@ class Autores{
         return $filaMax['MaxColumna'];
     }
 
+
+
     public function buscarLibros($post){
 
         $post['IdMin'] = (!empty($post['IdMin'])) ? $post['IdMin'] : $this->getMinParam('idPersona');
@@ -105,6 +107,40 @@ class Autores{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
+
+
+
+    public function printAuthorsBooks(array $arrAuthorsBooks): void
+    {
+        foreach ($arrAuthorsBooks as $author) {
+            echo '<h2>' . $author['NOMBRE'] . ' (ID: ' . $author['ID_PERSONA'] . ')</h2>';
+            echo '<ul>';
+            foreach ($author['LIBROS'] as $book) {
+                echo '<li>' . $book['TITULO'] . '</li>';
+            }
+            echo '</ul>';
+        }
+    }
+
+    public function getWhere(array $arrIdBooks): array
+    {
+        $strIds = implode(',', $arrIdBooks);
+        $SQLQuery = 'SELECT * FROM LIBROS WHERE ID_LIBRO IN (' . $strIds . ')';
+        $PDOStmt = $this->conection->prepare($SQLQuery);
+        $PDOStmt->execute();
+        return $PDOStmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getAuthors()
+    {
+        $SQLQuery = 'SELECT * FROM AUTORES';
+        $PDOStmt = $this->conection->prepare($SQLQuery);
+        $PDOStmt->execute();
+        return $PDOStmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 
 

@@ -1,5 +1,6 @@
 -- CREATE DATABASE mvc_biblioteca;
 -- use mvc_biblioteca;
+
 CREATE TABLE autores (
 idPersona  int AUTO_INCREMENT primary key,
 nombre  VARCHAR(20),
@@ -24,7 +25,6 @@ CREATE TABLE libros (
  idSaga integer(3)
 
  foreign key (idSaga) references sagas(idSaga));
-
 
 
 
@@ -94,12 +94,12 @@ create table escriben(
 
 
 
-INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Manolito Gafotas','infantil','España',1994,192);
-INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Crónicas de la Dragonlance','fantasía épica','USA',1987,1472);
-INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Matilda','falntasía','UK',1988, 248);
-INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('El león, la bruja y el armario','fantasía','UK',1950,240);
-INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('El hobbit','Fantasía heroica','UK',1937,288);
-INSERT INTO libros (titulo,genero,pais,ano,numPaginas) VALUES ('Harry Potter y la piedra filosofal','fantasía','UK',1997,264);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas,idSaga) VALUES ('Manolito Gafotas','infantil','España',1994,192,1);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas,idSaga) VALUES ('Crónicas de la Dragonlance','fantasía épica','USA',1987,1472,1);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas,idSaga) VALUES ('Matilda','falntasía','UK',1988, 248,2);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas,idSaga) VALUES ('El león, la bruja y el armario','fantasía','UK',1950,240,2);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas,idSaga) VALUES ('El hobbit','Fantasía heroica','UK',1937,288,2);
+INSERT INTO libros (titulo,genero,pais,ano,numPaginas,idSaga) VALUES ('Harry Potter y la piedra filosofal','fantasía','UK',1997,264,3);
 
 
 INSERT INTO autores (nombre,apellido) VALUES ('Elvira','Lindo');

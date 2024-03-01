@@ -76,7 +76,7 @@
          $libroEditado=  $this->objlibro->Confirmareditar($_POST);
 
          $libroEditado['autores'] =$this->objAutores->mostrarAutores();
-          print_r( $libroEditado);
+          //print_r( $libroEditado);
 
 
         return $libroEditado;

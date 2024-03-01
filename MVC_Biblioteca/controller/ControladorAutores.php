@@ -43,6 +43,19 @@ class ControladorAutores{
 */            return $autoresEncontrados;
     }
 
+    public function printAuthorsBooks(array $arrAuthorsBooks): void
+    {
+        foreach ($arrAuthorsBooks as $author) {
+            echo '<h2>' . $author['NOMBRE'] . ' (ID: ' . $author['ID_PERSONA'] . ')</h2>';
+            echo '<ul>';
+            foreach ($author['LIBROS'] as $book) {
+                echo '<li>' . $book['TITULO'] . '</li>';
+            }
+            echo '</ul>';
+        }
+    }
+
+
 
 
     public function getView(){

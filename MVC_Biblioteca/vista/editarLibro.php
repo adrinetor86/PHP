@@ -14,6 +14,7 @@ if(isset($arrDatos['datos']['autores'])) $autores = $arrDatos['datos']['autores'
 if(isset($arrDatos['datos']['sagas'])) $Sagas = $arrDatos['datos']['sagas'];
 //echo "PRUEBA TITULO: ".$titulo;
 //print_r($arrDatos['datos'])
+print_r($Sagas);
     ?>
 
 

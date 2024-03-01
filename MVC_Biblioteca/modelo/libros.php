@@ -179,7 +179,7 @@
             $libro = $this->mostrarLibroId($param);
             $libro['autores'] =$this->objAutores->mostrarAutores();
             $libro['sagas'] =$this->mostrarSagas();
-            print_r($libro);
+           // print_r($libro);
             return $libro;
 
         }
@@ -424,34 +424,34 @@
 
     public function mostrarSagas(){
 
-        $sql = "SELECT distinct nombreSaga FROM sagas ";
+        $sql = "SELECT * FROM sagas ";
 
         $stmt = $this->conection->prepare($sql);
 
         $stmt->execute();
 
-        $libros=[];
-        while($saga=$stmt->fetch(PDO::FETCH_ASSOC)) {
-            echo "*****";
-            //    print_r($saga);
-
-            $arrSagasLibros = $this->mostrarLibrosSagas($saga['nombreSaga']);
-
-            foreach ($arrSagasLibros as $libro) {
-                $saga['idLibro'][] = $libro['idLibro'];
-                $saga['titulo'][] = $libro['titulo'];
-
-            };
-
-
-
-            array_push($libros, $saga);
-        }
-
-
+//        $libros=[];
+//        while($saga=$stmt->fetch(PDO::FETCH_ASSOC)) {
+//            echo "*****";
+//            //    print_r($saga);
+//
+//            $arrSagasLibros = $this->mostrarLibrosSagas($saga['nombreSaga']);
+//
+//            foreach ($arrSagasLibros as $libro) {
+//                $saga['idLibro'][] = $libro['idLibro'];
+//                $saga['titulo'][] = $libro['titulo'];
+//
+//            };
+//
+//
+//
+//            array_push($libros, $saga);
+//        }
 
 
-        return $libros;
+
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       //  return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -476,12 +476,12 @@
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function insertarIDRelSaga($idLibro,$idSaga){
-
-            $sql = "INSERT INTO relacionSaga  VALUES ($idLibro,$idSaga)";
-            $stmt = $this->conection->prepare($sql);
-            $stmt->execute();
-    }
+//    public function insertarIDRelSaga($idLibro,$idSaga){
+//
+//            $sql = "INSERT INTO relacionSaga  VALUES ($idLibro,$idSaga)";
+//            $stmt = $this->conection->prepare($sql);
+//            $stmt->execute();
+//    }
 
     public function insertarSaga($idSaga){
 
